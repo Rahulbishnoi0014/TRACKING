@@ -1,0 +1,48 @@
+<%- include('header')%>
+
+    <body>
+
+        <div id="bg-image"></div>
+        <div class="container">
+            <form method='post' onSubmit={saveData}>
+                <div class="box">
+                    <h2 id='signuph'>Sign Up</h2>
+                    <div class="flex">
+                        <label htmlFor="name">Full Name</label>
+                        <input type="text" placeholder='Enter Your Name here' id='name' />
+                    </div>
+                    <div class="flex">
+                        <label htmlFor="Email">Email</label>
+                        <input type="email" placeholder='Enter Email' id='email' } />
+                    </div>
+                    <div class="flex">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" placeholder='Enter password' name='pass' autoComplete="OFF"
+                            id='password' />
+                    </div>
+                    <div class="flex">
+                        <label htmlFor="Phone">Phone No.</label>
+                        <input type="number" placeholder='Enter Phone No' name='num' autoComplete="OFF" id='phone' />
+                    </div>
+                    <div class="flex">
+                        <label htmlFor="Selection">Post</label>
+                        <select name="" id="select">
+                            <option value="">Select PLZ</option>
+                            <option value="Mentor">Mentor</option>
+                            <option value="Employ">Employ</option>
+                        </select>
+                    </div>
+
+                    <button type='sumbit'>Sign Up</button>
+
+                </div>
+            </form>
+            <div id="extrabox">
+                <h2>Track Your Work With Us</h2>
+                <h3>Sign In If You Already Have An Account</h3>
+                <button>signin</button>
+            </div>
+        </div>
+    </body>
+
+    <%- include('footer')%>
