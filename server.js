@@ -116,11 +116,27 @@ app.get("/signin", function (req, res) {
 
 
 app.get("/",(req,res)=>{
-    res.render("home")
+    res.render("home");
 })
 app.get("/signup",(req,res)=>{
-    res.render("signup")
+    res.render("signup");
 })
+
+app.get("/mentor",(req,res)=>{
+    res.render("mentor");
+})
+app.get("/user",(req,res)=>{
+    res.render("user");
+})
+
+
+
+
+
+
+
+
+
 app.listen("3000",()=>{
     console.log("server started at port : 3000")
 })

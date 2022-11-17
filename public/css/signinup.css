@@ -2,13 +2,15 @@
     margin: 0;
     padding: 0;
 }
-.container {
+
+.signup .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-#bg-image{
+
+.signup #bg-image {
     background-image: url('https://wallpapercave.com/wp/wp10054801.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,7 +21,8 @@
     filter: blur(8px);
     -webkit-filter: blur(5px);
 }
-.box {
+
+.signup .box {
     width: 400px;
     height: 500px;
     background-color: rgba(47, 42, 42, 0.747);
@@ -28,7 +31,8 @@
     margin-right: 350px;
     color: white;
 }
-#extrabox{
+
+.signup #extrabox {
     width: 850px;
     height: 500px;
     background-color: rgba(47, 42, 42, 0.886);
@@ -38,38 +42,43 @@
     right: 20%;
     z-index: -1;
 }
-#signuph{
+
+.signup #signuph {
     text-align: center;
     margin-top: -8px;
     font-size: 40px;
     font-weight: 500;
 }
-label{
+
+.signup label {
     font-weight: 650;
     margin-bottom: 7px;
 }
-.flex {
+
+.signup .flex {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 5px;
 }
-#select{
+
+.signup #select {
     border-radius: 8px;
     background-color: rgba(212, 212, 212, 0.869);
 }
-input{
+
+.signup input {
     height: 30px;
     border-radius: 10px;
     padding: 0px 5px;
     border: 0px solid rgba(72, 69, 69, 0.501);
     outline: none;
     margin-top: 2px;
-    /* color: white; */
     background-color: rgb(255, 255, 255);
 }
-button{
+
+.signup button {
     width: 100%;
     height: 30px;
     margin-top: 20px;
@@ -82,20 +91,23 @@ button{
     color: white;
     font-weight: bold;
 }
-button:hover{
+
+.signup button:hover {
     background: rgba(72, 71, 71, 0.724);
     color: rgb(202, 202, 202);
     font-size: 19px;
     transition: 0.75s;
 }
-#signin{
+
+.signup #signin {
     text-decoration: none;
     margin-left: 172px;
     font-size: 17px;
     color: rgb(255, 255, 255);
     font-weight: 600;
 }
-#signin:hover{
+
+.signup #signin:hover {
     font-size: 18px;
     transition: 0.75s;
     border-radius: 20%;

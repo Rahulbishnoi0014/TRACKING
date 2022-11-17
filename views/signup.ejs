@@ -1,10 +1,10 @@
-<%- include('header')%>
+<%- include('part/header')%>
 
-    <body>
+    <body class="signup">
 
         <div id="bg-image"></div>
         <div class="container">
-            <form method='post' onSubmit={saveData}>
+            <form method='post' >
                 <div class="box">
                     <h2 id='signuph'>Sign Up</h2>
                     <div class="flex">
@@ -17,8 +17,7 @@
                     </div>
                     <div class="flex">
                         <label htmlFor="password">Password</label>
-                        <input type="password" placeholder='Enter password' name='pass' autoComplete="OFF"
-                            id='password' />
+                        <input type="password" placeholder='Enter password' name='pass' autoComplete="OFF"id='password' />
                     </div>
                     <div class="flex">
                         <label htmlFor="Phone">Phone No.</label>
@@ -45,4 +44,4 @@
         </div>
     </body>
 
-    <%- include('footer')%>
+    <%- include('part/footer')%>
