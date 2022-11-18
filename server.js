@@ -221,6 +221,59 @@ app.get("/logout", function (req, res) {
 });
 
 
+
+app.get("/deletetodo", function (req, res) {
+    const requestedUser = req.query.uid;
+    const requestedPost = req.query.tid;
+    if (req.isAuthenticated()) {
+
+        // User.updateOne({ _id:requestedUser,mytodo:{$elemMatch:{userId:requestedPost}} },{$set:{status:{$eq:[false,"$status"]}}},
+        //     { safe: true, multi: true }, (err) => {
+        //     if (!err) {
+            
+        //         res.redirect(req.query.user);
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // }
+        // );
+
+        User.updateOne({ _id:requestedUser,mytodo:{$elemMatch:{userId:requestedPost}} },{$set:{status:true}},
+            { safe: true, multi: true }, (err) => {
+            if (!err) {
+            
+                res.redirect(req.query.user);
+            }
+            else {
+                console.log(err);
+            }
+        }
+        );
+
+        // User.findOne({ _id:requestedUser,mytodo:{$elemMatch:{userId:requestedPost}} },
+        //    (err,data) => {
+        //     if (!err) {
+            
+        //         console.log(data);
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // }
+        // );
+
+     
+
+    }
+
+    else {
+        res.redirect("/signin#LoginSignup");
+    }
+
+});
+
+
 // ----------------------------------P O S T-----------------------------------------
 
 app.post("/signup", function (req, res,next) {
