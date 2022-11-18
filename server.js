@@ -42,14 +42,17 @@ mongoose.connect(process.env.mongourl, { useNewUrlparser: true });
 // mongoose.set("useCreateIndex",true);
 const userSchema = new mongoose.Schema({
     lastupdate: Date,
-    firstname: String,
-    lastName: String,
+    name: String,
     username: String,
     email: String,
     phone: Number,
     password: String,
     googleId: String,
-    secret: Array
+    post:String,
+    
+    mytodo:[],
+    assignedtodo:[]
+
 });
 
 
@@ -106,31 +109,295 @@ app.get("/auth/google/dash",
     });
 
 
-// ---------------------------------------------------------------------------
+// ----------------------------------G E T-----------------------------------------
 
 app.get("/signin", function (req, res) {
     const response = req.query.error;
     // var x=req.isAuthenticated();
-    res.render("signin", { errortext: response });
+    const ack="";
+        res.render("signin",{ack});
 });
 
 
-app.get("/",(req,res)=>{
-    res.render("home");
+app.get("/dash",(req,res)=>{
+
+    if(req.isAuthenticated()){
+        res.render("home");
+
+    }else{
+        const ack="LIGIN FIRST";
+        res.render("signin",{ack});
+    }
+
+
 })
 app.get("/signup",(req,res)=>{
     res.render("signup");
 })
 
 app.get("/mentor",(req,res)=>{
-    res.render("mentor");
+
+    if (req.isAuthenticated()) {
+
+        var accountuser;
+        var userid = req.session.passport.user;
+        User.findOne({ _id: userid }, function (err, data) {
+            // console.log(data);
+            if (err) {
+                res.send(data);
+            }
+            else {
+                if(data.post=='Mentor'){
+                    
+                    const mytodo=data.mytodo;
+
+                res.render("mentor",{data,mytodo});
+                }
+
+                else{
+                    res.redirect('/user');
+                }
+                
+            }
+        })
+
+
+    }
+    else {
+        const ack="LIGIN FIRST";
+        res.render("signin",{ack});
+    }
+
 })
+
+
+
+
+
 app.get("/user",(req,res)=>{
-    res.render("user");
+     if (req.isAuthenticated()) {
+
+        var accountuser;
+        var userid = req.session.passport.user;
+        User.findOne({ _id: userid }, function (err, data) {
+            // console.log(data);
+            if (err) {
+                res.send(data);
+            }
+            else {
+                const mytodo=data.mytodo;
+                const assignedtodo=data.assignedtodo;
+                if(data.post=='Mentor'){
+                    res.redirect('/mentor');
+                }
+
+                else{
+                    res.render("user",{data,mytodo,assignedtodo});
+
+                }
+            }
+        })
+
+
+    }
+    else {
+        const ack="Login first";
+        res.render("signin",{ack});
+    }
 })
 
+app.get("/logout", function (req, res) {
+    req.logout(function (err) {
+        if (err) {
+            // console.log(err);
+            res.send("error");
+
+        }
+        else {
+            res.redirect("/signin");
+
+        }
+    });
+});
 
 
+// ----------------------------------P O S T-----------------------------------------
+
+app.post("/signup", function (req, res,next) {
+    const newUser = new User({
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        post: req.body.post,
+
+    })
+
+
+
+
+    User.register(newUser, req.body.password, function (err, user) {
+        if (err) {
+            // console.log(err);
+            res.redirect("/signup?error=exist");
+        }
+        else {
+            passport.authenticate("local", (err, user, info) => {
+                if (err) throw err;
+                if (!user){
+                  const ack="NO USER FOUND";
+                  res.render("signin",{ack});
+                }
+                else {
+                  req.logIn(user, (err) => {
+                    if (err) throw err;
+                  if(user.post=='Mentor'){
+                      res.redirect("/mentor");
+                  }
+                  else{
+                      res.redirect("/user");
+                  }
+          
+          
+                  });
+                }
+              })(req, res, next);
+        }
+    })
+
+
+
+
+});
+
+
+app.post("/signin", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) throw err;
+      if (!user){
+        const ack="NO USER FOUND";
+        res.render("signin",{ack});
+      }
+      else {
+        req.logIn(user, (err) => {
+          if (err) throw err;
+        if(user.post==='Mentor'){
+            res.redirect("/mentor");
+        }
+        else{
+            res.redirect("/user");
+        }
+
+
+        });
+      }
+    })(req, res, next);
+
+  });
+
+
+app.post("/assignteam",(req,res)=>{
+
+    if(req.isAuthenticated()){
+
+        const todo = {
+            text: String,
+            status:Boolean,
+            postId: String
+        }
+        const fromto = "/" + req.query.user;
+        const postid = ObjectId();
+
+        todo.text = req.body.todo;
+        todo.status=false;
+        todo.postId = postid;
+    
+        User.findOne({username:req.body.username}, function (err, foundUser) {
+            if (err) {
+                alert("user not found");
+            }
+            else {
+                if (foundUser) {
+                    foundUser.lastupdate = new Date;
+                    foundUser.assignedtodo.push(todo);
+                   
+                    foundUser.save(function (err) {
+                        if(!err){
+                            res.redirect("/mentor");
+                        }else{
+                            res.send(err);
+                        }
+    
+                    });
+                }else{
+                    res.send("user not found")
+
+                }
+            }
+        });
+    
+    
+    
+    }
+
+    else{
+
+        const ack="Login first";
+        res.render("signin",{ack});
+    }
+
+});
+
+
+app.post("/assignself",(req,res)=>{
+
+
+    if(req.isAuthenticated()){
+
+        const todo = {
+            text: String,
+            status:Boolean,
+            postId: String
+        }
+        const fromto = "/" + req.query.user;
+        const postid = ObjectId();
+
+        todo.text = req.body.todo;
+        todo.status=false;
+        todo.postId = postid;
+    
+        User.findById(req.session.passport.user, function (err, foundUser) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                if (foundUser) {
+                    foundUser.lastupdate = new Date;
+                    foundUser.mytodo.push(todo);
+                   
+                    foundUser.save(function (err) {
+                        if(!err){
+                            res.redirect(fromto);
+                        }else{
+                            res.send(err);
+                        }
+    
+                    });
+                }
+            }
+        });
+    
+    
+    
+    }
+
+    else{
+        const ack="Login first";
+        res.render("signin",{ack});
+    }
+
+
+});
 
 
 

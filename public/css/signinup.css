@@ -1,16 +1,13 @@
 * {
     margin: 0;
-    padding: 0;
 }
-
 .signup .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-
-.signup #bg-image {
+.signup #bg-image{
     background-image: url('https://wallpapercave.com/wp/wp10054801.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,18 +18,16 @@
     filter: blur(8px);
     -webkit-filter: blur(5px);
 }
-
 .signup .box {
     width: 400px;
     height: 500px;
     background-color: rgba(47, 42, 42, 0.747);
     padding: 20px;
     border-radius: 20px;
-    margin-right: 350px;
     color: white;
+    margin-left: 219px;
 }
-
-.signup #extrabox {
+.signup #extrabox{
     width: 850px;
     height: 500px;
     background-color: rgba(47, 42, 42, 0.886);
@@ -41,20 +36,27 @@
     position: absolute;
     right: 20%;
     z-index: -1;
+    color: white;
 }
-
-.signup #signuph {
+.signup .EB-p1{
+    margin-left: 490px;
+    width: 400px;
+    font-size: 50px;
+}
+.signup #EB-p1{
+    width: 400px;
+    font-size: 50px;
+}
+.signup #signuph{
     text-align: center;
     margin-top: -8px;
     font-size: 40px;
     font-weight: 500;
 }
-
-.signup label {
+.signup label{
     font-weight: 650;
-    margin-bottom: 7px;
+    margin-bottom: 15px;
 }
-
 .signup .flex {
     display: flex;
     justify-content: center;
@@ -62,13 +64,12 @@
     margin-top: 10px;
     margin-bottom: 5px;
 }
-
-.signup #select {
+.signup #select{
     border-radius: 8px;
-    background-color: rgba(212, 212, 212, 0.869);
+    height: 25px;
+    background-color: white;
 }
-
-.signup input {
+.signup input{
     height: 30px;
     border-radius: 10px;
     padding: 0px 5px;
@@ -77,8 +78,7 @@
     margin-top: 2px;
     background-color: rgb(255, 255, 255);
 }
-
-.signup button {
+.signup button{
     width: 100%;
     height: 30px;
     margin-top: 20px;
@@ -91,24 +91,25 @@
     color: white;
     font-weight: bold;
 }
-
-.signup button:hover {
-    background: rgba(72, 71, 71, 0.724);
-    color: rgb(202, 202, 202);
-    font-size: 19px;
-    transition: 0.75s;
-}
-
-.signup #signin {
+.signup #signin{
     text-decoration: none;
-    margin-left: 172px;
-    font-size: 17px;
+    font-size: 30px;
     color: rgb(255, 255, 255);
     font-weight: 600;
+    margin-top: 400px;
+    margin-right: 450px;
+    margin-left: 45px;
 }
-
-.signup #signin:hover {
-    font-size: 18px;
-    transition: 0.75s;
-    border-radius: 20%;
+.signup #loginBox{
+    margin-left: 316px;
+}
+.signup .box h2{
+    text-align: center;
+    font-size: 40px;
+}
+.signup #login{
+    margin-top: 280px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
 }

@@ -5,14 +5,18 @@
     <div class="main-box">
         <div class="left-box">
             <h1>Login Details</h1>
+
             <div class="details">
-                <h2>Name :- Sourabh</h2>
-                <h2>Email:- Sourabh@gmail.com</h2>
-                <h2>phone:- 8930300480</h2>
-                <h2>Post :- mentor</h2>
+                
+                <h2>Name :- <%=data.name%> </h2>
+                <h2>Email:- <%=data.email%></h2>
+                <h2>phone:- <%=data.phone%></h2>
+                <h2>Post :- <%=data.post%></h2>
             </div>
+
+
             <div class="links">
-                <button><a href="/">Logout</a></button>
+                <button><a href="/logout">Logout</a></button>
                 <button><a href="/">My Account</a></button>
                 <button><a href="/">My Team Mates</a></button>
                 <button><a href="/">Extra </a></button>
@@ -23,22 +27,45 @@
         <div class="middle-box">
           
             <div class="input">
-                <input type="text" placeholder="Todo">
+                <form action="/assignself?user=mentor" method="post">
+                    <input type="text" placeholder="Todo" name="todo">
                 <!-- <textarea name="" id="" cols="10" rows="5" > -->
-                <button>Submit</button>
+                <button type="submit">Submit</button>
+                </form>
             </div>
             <div class="space">
+                <div class="mytodo">
+                    <h1>MY TODO</h1>
+                <% mytodo.reverse().forEach(function(item){ %>
+
+                    <% if(item.status==false){%>
+                        <p style="color: red;"><%=item.text%></p>
+                    <% }%> 
+                    <% if(item.status==true){%>
+                        <p style="color: green;"><%=item.text%></p>
+                    <% }%> 
+
+                <% }) %> 
+
+                </div>
 
             </div>
         </div>
         <div class="right-box">
             <div class="assing-input">
-                <form action="">
-                    <input type="text" placeholder="Enter the mate name">
-                    <input type="text" placeholder="Enter the task">
-                    <button>Assign</button>
+                <form action="/assignteam" method="post" >
+                    <input type="text" placeholder="Enter the mate name" name="username">
+                    <input type="text" placeholder="Enter the task" name="todo">
+                    <button type="submit">Assign</button>
                 </form>
+
+                <!-- <input type="text" placeholder="Enter the mate name" name="username" id="username">
+                <input type="text" placeholder="Enter the task" name="todo" id="todo">
+                <button onclick="submit()">Assign</button> -->
             </div>
+            <p id="ack"></p>
+          
+            
         </div>
     </div>
 </body>

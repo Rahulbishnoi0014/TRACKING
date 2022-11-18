@@ -6,13 +6,13 @@
         <div class="left-box">
             <h1>Login Details</h1>
             <div class="details">
-                <h2>Name :- Sourabh</h2>
-                <h2>Email:- Sourabh@gmail.com</h2>
-                <h2>phone:- 8930300480</h2>
-                <h2>Post :- mentor</h2>
+                <h2>Name :- <%=data.name%> </h2>
+                <h2>Email:- <%=data.email%></h2>
+                <h2>phone:- <%=data.phone%></h2>
+                <h2>Post :- <%=data.post%></h2>
             </div>
             <div class="links">
-                <button><a href="/">Logout</a></button>
+                <button><a href="/logout">Logout</a></button>
                 <button><a href="/">My Account</a></button>
                 <button><a href="/">My Team Mates</a></button>
                 <button><a href="/">Extra </a></button>
@@ -33,11 +33,40 @@
 
 
             <div class="input">
-                <input type="text" placeholder="Todo">
+                <form action="/assignself?user=user" method="post">
+                    <input type="text" placeholder="Todo" name="todo">
                 <!-- <textarea name="" id="" cols="10" rows="5" > -->
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </div>
             <div class="space">
+                <div class="mytodo">
+                    <h1>MY TODO</h1>
+                <% mytodo.reverse().forEach(function(item){ %>
+
+                    <% if(item.status==false){%>
+                        <p style="color: red;"><%=item.text%></p>
+                    <% }%> 
+                    <% if(item.status==true){%>
+                        <p style="color: green;"><%=item.text%></p>
+                    <% }%> 
+
+                <% }) %> 
+
+                </div>
+
+                <div class="assignedtod">
+                    <h1>Assigned TODO</h1>
+                    <% assignedtodo.reverse().forEach(function(item){ %>
+    
+                        <% if(item.status==false){%>
+                            <p style="color: red;"><%=item.text%></p>
+                        <% }%> 
+                        <% if(item.status==true){%>
+                            <p style="color: green;"><%=item.text%></p>
+                        <% }%> 
+    
+                    <% }) %> 
+                </div>
 
             </div>
         </div>
