@@ -1,6 +1,9 @@
 <%- include('part/header')%>
 
 
+
+
+
 <body class="mentor">
     <div class="main-box">
         <div class="left-box">
@@ -27,40 +30,20 @@
         <div class="middle-box">
           
             <div class="input">
-                <form action="/assignself?user=mentor" method="post">
-                    <input type="text" placeholder="Todo" name="todo">
+                <form action="/addteam" method="post">
+                    <input type="text" placeholder="add team member" name="username">
                 <!-- <textarea name="" id="" cols="10" rows="5" > -->
                 <button type="submit">Submit</button>
                 </form>
             </div>
             <div class="space">
-                <div class="mytodo">
-                    <h1>MY TODO</h1>
 
-                <% var count=0; %> 
-                <% mytodo.reverse().forEach(function(item){ %>
 
-                    <% if(item.status==false){%>
-                        <p id=<%=count%> style="color: red;"><%=item.text%>
-                   
-                   <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=mentor">..DELETE..</a>
-                </p>
-                   
-                        <% }%> 
-                    <% if(item.status==true){%>
-                        <p id=<%=count%> style="color: green;  text-decoration: line-through;"><%=item.text%>
-                        
-                            <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=mentor">..UNDO..</a>
-                        </p>   
-                        <% }%> 
-                        
-                        <% count++ %> 
-                <% }) %> 
-
-                </div>
+                
 
             </div>
         </div>
+
         <div class="right-box">
             <div class="assing-input">
                 <form action="/assignteam" method="post" >
@@ -84,6 +67,7 @@
           
             
         </div>
+
     </div>
 </body>
 
