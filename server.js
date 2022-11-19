@@ -50,6 +50,7 @@ const userSchema = new mongoose.Schema({
     googleId: String,
     post:String,
     
+    team:{},
     mytodo:[],
     assignedtodo:[]
 
@@ -111,6 +112,11 @@ app.get("/auth/google/dash",
 
 // ----------------------------------G E T-----------------------------------------
 
+app.get("/",(req,res)=>{
+    res.redirect("/mentor");
+})
+
+
 app.get("/signin", function (req, res) {
     const response = req.query.error;
     // var x=req.isAuthenticated();
@@ -138,7 +144,10 @@ app.get("/signup",(req,res)=>{
 app.get("/mentor",(req,res)=>{
 
     if (req.isAuthenticated()) {
-
+        var ack="";
+        
+        if(req.query.ack) ack=req.query.ack;
+        
         var accountuser;
         var userid = req.session.passport.user;
         User.findOne({ _id: userid }, function (err, data) {
@@ -150,8 +159,10 @@ app.get("/mentor",(req,res)=>{
                 if(data.post=='Mentor'){
                     
                     const mytodo=data.mytodo;
-
-                res.render("mentor",{data,mytodo});
+                    
+                    
+                    
+                res.render("mentor",{data,mytodo,ack});
                 }
 
                 else{
@@ -221,6 +232,83 @@ app.get("/logout", function (req, res) {
 });
 
 
+
+app.get("/deletetodo", function (req, res) {
+    const requestedUser = req.query.uid;
+    const requestedPost = req.query.tid;
+    if (req.isAuthenticated()) {
+
+        //delete
+        User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { mytodo: { postId: ObjectId(requestedPost) } } },
+            { safe: true, multi: true }, (err) => {
+            if (!err) {
+                console.log(err);
+                res.redirect(req.query.user);
+            }
+            else {
+                res.redirect(req.query.user);
+            }
+        }
+        );
+
+        // User.updateOne({ _id:ObjectId(requestedUser),mytodo:{$elemMatch:{postId:ObjectId(requestedPost)}} },[{$set:{status:true}}],
+        //     { safe: true, multi: true }, (err) => {
+        //     if (!err) {
+            
+        //         res.redirect(req.query.user);
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // }
+        // );
+
+    }
+
+    else {
+        res.redirect("/signin#LoginSignup");
+    }
+
+});
+
+app.get("/deleteassign", function (req, res) {
+    const requestedUser = req.query.uid;
+    const requestedPost = req.query.tid;
+    if (req.isAuthenticated()) {
+
+        //delete
+        User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { assignedtodo: { postId: ObjectId(requestedPost) } } },
+            { safe: true, multi: true }, (err) => {
+            if (!err) {
+                console.log(err);
+                res.redirect(req.query.user);
+            }
+            else {
+                res.redirect(req.query.user);
+            }
+        }
+        );
+
+        // User.updateOne({ _id:ObjectId(requestedUser),mytodo:{$elemMatch:{postId:ObjectId(requestedPost)}} },[{$set:{status:true}}],
+        //     { safe: true, multi: true }, (err) => {
+        //     if (!err) {
+            
+        //         res.redirect(req.query.user);
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // }
+        // );
+
+    }
+
+    else {
+        res.redirect("/signin");
+    }
+
+});
+
 // ----------------------------------P O S T-----------------------------------------
 
 app.post("/signup", function (req, res,next) {
@@ -281,7 +369,7 @@ app.post("/signin", (req, res, next) => {
       else {
         req.logIn(user, (err) => {
           if (err) throw err;
-        if(user.post==='Mentor'){
+        if(user.post=='Mentor'){
             res.redirect("/mentor");
         }
         else{
@@ -294,6 +382,51 @@ app.post("/signin", (req, res, next) => {
     })(req, res, next);
 
   });
+
+// app.post("/addteam",(req,res)=>{
+
+//     if(req.isAuthenticated()){
+
+        
+//         const fromto = "/" + req.query.user;
+//         const postid = ObjectId();
+
+//         const username=req.body.username;
+    
+//         User.findOne({username}, function (err, foundUser) {
+//             if (err) {
+//                 res.redirect("/mentor?err=err");
+//             }
+//             else {
+//                 if (foundUser) {
+//                     User.team.foundUser;
+                   
+//                     foundUser.save(function (err) {
+//                         if(!err){
+//                             res.redirect("/mentor");
+//                         }else{
+//                             res.redirect("/mentor?ack=err");
+//                         }
+    
+//                     });
+//                 }else{
+//                     res.redirect("/mentor?ack=nf");
+
+//                 }
+//             }
+//         });
+    
+    
+    
+//     }
+
+//     else{
+
+//         const ack="Login first";
+//         res.render("signin",{ack});
+//     }
+
+// });
 
 
 app.post("/assignteam",(req,res)=>{
@@ -325,12 +458,12 @@ app.post("/assignteam",(req,res)=>{
                         if(!err){
                             res.redirect("/mentor");
                         }else{
-                            res.send(err);
+                            res.redirect("/mentor?ack=err");
                         }
     
                     });
                 }else{
-                    res.send("user not found")
+                    res.redirect("/mentor?ack=nf");
 
                 }
             }

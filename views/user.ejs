@@ -41,31 +41,51 @@
             <div class="space">
                 <div class="mytodo">
                     <h1>MY TODO</h1>
-                <% mytodo.reverse().forEach(function(item){ %>
-
-                    <% if(item.status==false){%>
-                        <p style="color: red;"><%=item.text%></p>
-                    <% }%> 
-                    <% if(item.status==true){%>
-                        <p style="color: green;"><%=item.text%></p>
-                    <% }%> 
-
-                <% }) %> 
+                    <% var count=0; %> 
+                    <% mytodo.reverse().forEach(function(item){ %>
+    
+                        <% if(item.status==false){%>
+                            <p id=<%=count%> style="color: red;"><%=item.text%>
+                       
+                       <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..DELETE..</a>
+                    </p>
+                       
+                            <% }%> 
+                        <% if(item.status==true){%>
+                            <p id=<%=count%> style="color: green;  text-decoration: line-through;"><%=item.text%>
+                            
+                                <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
+                            </p>   
+                            <% }%> 
+                            
+                            <% count++ %> 
+                    <% }) %> 
+    
 
                 </div>
 
                 <div class="assignedtod">
                     <h1>Assigned TODO</h1>
-                    <% assignedtodo.reverse().forEach(function(item){ %>
-    
-                        <% if(item.status==false){%>
-                            <p style="color: red;"><%=item.text%></p>
+                    <% var count1=0; %> 
+                <% assignedtodo.reverse().forEach(function(item){ %>
+
+                    <% if(item.status==false){%>
+                        <p id=<%=count1%> style="color: red;"><%=item.text%>
+                   
+                   <a href="/deleteassign?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..DELETE..</a>
+                </p>
+                   
                         <% }%> 
-                        <% if(item.status==true){%>
-                            <p style="color: green;"><%=item.text%></p>
+                    <% if(item.status==true){%>
+                        <p id=<%=count1%> style="color: green;  text-decoration: line-through;"><%=item.text%>
+                        
+                            <a href="/deleteassign?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
+                        </p>   
                         <% }%> 
-    
-                    <% }) %> 
+                        
+                        <% count1++ %> 
+                <% }) %> 
+
                 </div>
 
             </div>
