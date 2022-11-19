@@ -1,32 +1,55 @@
-<%- include('part/header')%>
+<html lang="en">
 
-
-
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
 
 <body class="mentor">
-    <div class="main-box">
-        <div class="left-box">
-            <h1>Login Details</h1>
-
-            <div class="details">
+    <nav>
+        <h2>Tracking System</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                        aria-controls="offcanvasExample" id="btn">
+                        My info
+                    </a>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                        aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="details">
                 
-                <h2>Name :- <%=data.name%> </h2>
-                <h2>Email:- <%=data.email%></h2>
-                <h2>phone:- <%=data.phone%></h2>
-                <h2>Post :- <%=data.post%></h2>
-            </div>
+                                <h2>Name :- <%=data.name%> </h2>
+                                <h2>Email:- <%=data.email%></h2>
+                                <h2>phone:- <%=data.phone%></h2>
+                                <h2>Post :- <%=data.post%></h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/myteam">My Team Mates</a></li>
+
+            </ul>
+    </nav>
 
 
-            <div class="links">
-                <button><a href="/logout">Logout</a></button>
-                <button><a href="/">My Account</a></button>
-                <button><a href="/myteam">My Team Mates</a></button>
-                <button><a href="/">Extra </a></button>
-                <button><a href="/">Extra </a></button>
-
-            </div>
-        </div>
         <div class="middle-box">
           
             <div class="input">
@@ -46,7 +69,6 @@
                 </center>
                 <form action="/addteam?user=myteam" method="post">
                     <input type="text" placeholder="add team member" name="username">
-                <!-- <textarea name="" id="" cols="10" rows="5" > -->
                 <button type="submit">Submit</button>
                 </form>
             </div>
@@ -60,7 +82,7 @@
                     
 
                      <div class="teambox">
-                            <p style="color: red;"><%= item.name %>---- @ <%= item.username %> 
+                            <p style="color: red;"><%= item.name %>---- @ <%= item.username %> <%=item.phone %>
                             
                                 <a href="/deleteteam?uid=<%=data._id%>&tid=<%=item._id%>&user=myteam">..DELETE..</a>
                             
@@ -91,10 +113,6 @@
                     <input type="text" placeholder="Enter the task" name="todo">
                     <button type="submit">Assign</button>
                 </form>
-
-                <!-- <input type="text" placeholder="Enter the mate name" name="username" id="username">
-                <input type="text" placeholder="Enter the task" name="todo" id="todo">
-                <button onclick="submit()">Assign</button> -->
             </div>
             
             <%if(ack=='err') { %>

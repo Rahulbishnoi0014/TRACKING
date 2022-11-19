@@ -159,7 +159,7 @@
 .signup .sign-middle-box>h2 {
     text-align: center;
     margin-top: 8px;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bolder;
     color: white;
 }
@@ -177,8 +177,8 @@ form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .signup .sign-middle-box #select {
@@ -190,10 +190,10 @@ form {
 .signup .sign-middle-box input {
     height: 30px;
     border-radius: 10px;
-    padding: 0px 5px;
+    padding: 0px 4px;
     border: 0px solid rgba(72, 69, 69, 0.501);
     outline: none;
-    margin-top: 2px;
+    margin-top: 1px;
     background-color: rgb(255, 255, 255);
     font-size: 17px;
 }
@@ -203,11 +203,11 @@ form {
 }
 
 .signup .sign-middle-box input::placeholder {
-    font-size: 15px;
+    font-size: 12px;
 }
 
 label {
-    font-size: 17px;
+    font-size: 13px;
     color: white;
     font-weight: bold;
 }
@@ -215,14 +215,14 @@ label {
 .signup .sign-middle-box #submit,
 .signup .sign-right-box #login {
     width: 50%;
-    height: 40px;
+    height: 30px;
     font-size: 20px;
     font-weight: bolder;
     background: rgba(89, 89, 89, 0.724);
     border: none;
     cursor: pointer;
     color: white;
-    margin-top: 10px;
+    margin-top: 8px;
     border-radius: 10px;
 }
 
@@ -242,7 +242,7 @@ label {
 }
 
 .signup .sign-right-box>h1 {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bolder;
     margin-top: 20px;
     margin-bottom: 30px;
