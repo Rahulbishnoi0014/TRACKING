@@ -18,7 +18,7 @@
             <div class="links">
                 <button><a href="/logout">Logout</a></button>
                 <button><a href="/">My Account</a></button>
-                <button><a href="/">My Team Mates</a></button>
+                <button><a href="/myteam">My Team Mates</a></button>
                 <button><a href="/">Extra </a></button>
                 <button><a href="/">Extra </a></button>
 
@@ -63,7 +63,7 @@
         </div>
         <div class="right-box">
             <div class="assing-input">
-                <form action="/assignteam" method="post" >
+                <form action="/assignteam?from=mentor" method="post" >
                     <input type="text" placeholder="Enter the mate name" name="username">
                     <input type="text" placeholder="Enter the task" name="todo">
                     <button type="submit">Assign</button>
@@ -75,6 +75,9 @@
             <%}%> 
             <%if(ack=='nf') { %>
                 <p>username not found</p>
+            <%}%> 
+            <%if(ack=='sucess') { %>
+                <p>ASSIGNED SUCESSFULLY</p>
             <%}%> 
             
           

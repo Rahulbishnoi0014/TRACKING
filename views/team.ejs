@@ -21,7 +21,7 @@
             <div class="links">
                 <button><a href="/logout">Logout</a></button>
                 <button><a href="/">My Account</a></button>
-                <button><a href="/">My Team Mates</a></button>
+                <button><a href="/myteam">My Team Mates</a></button>
                 <button><a href="/">Extra </a></button>
                 <button><a href="/">Extra </a></button>
 
@@ -30,7 +30,21 @@
         <div class="middle-box">
           
             <div class="input">
-                <form action="/addteam" method="post">
+                <center>
+
+                    <h6>ENETR TEAM MEMBER USERNAME TO ADD / refresh its data</h6>
+
+                    <%if(ack1=='sucess') { %>
+                        <p>MEMBER ADDED</p>
+                    <%}%> 
+                    <%if(ack1=='err') { %>
+                        <p>something went wrong</p>
+                    <%}%> 
+                    <%if(ack1=='nf') { %>
+                        <p>username not found</p>
+                    <%}%> 
+                </center>
+                <form action="/addteam?user=myteam" method="post">
                     <input type="text" placeholder="add team member" name="username">
                 <!-- <textarea name="" id="" cols="10" rows="5" > -->
                 <button type="submit">Submit</button>
@@ -38,6 +52,32 @@
             </div>
             <div class="space">
 
+                <div class="assignedtod">
+                    <h1>MY TEAM</h1>
+                    <% var count1=0; %> 
+                <% team.reverse().forEach(function(item){ %>
+
+                    
+
+                     <div class="teambox">
+                            <p style="color: red;"><%= item.name %>---- @ <%= item.username %> 
+                            
+                                <a href="/deleteteam?uid=<%=data._id%>&tid=<%=item._id%>&user=myteam">..DELETE..</a>
+                            
+                            
+                            </p>
+
+                            <% item.assignedtodo.reverse().forEach(function(todo){ %>
+                                <p style="color: green;"><%= todo.text %> </p>
+                           <% }) %> 
+
+                     </div>
+                        
+                        
+                        <% count1++ %> 
+                <% }) %> 
+
+                </div>
 
                 
 
@@ -46,7 +86,7 @@
 
         <div class="right-box">
             <div class="assing-input">
-                <form action="/assignteam" method="post" >
+                <form action="/assignteam?from=myteam" method="post" >
                     <input type="text" placeholder="Enter the mate name" name="username">
                     <input type="text" placeholder="Enter the task" name="todo">
                     <button type="submit">Assign</button>
@@ -62,6 +102,9 @@
             <%}%> 
             <%if(ack=='nf') { %>
                 <p>username not found</p>
+            <%}%> 
+            <%if(ack=='sucess') { %>
+                <p>ASSIGNED SUCESSFULLY</p>
             <%}%> 
             
           

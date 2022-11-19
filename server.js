@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
     googleId: String,
     post:String,
     
-    team:{},
+    team:[],
     mytodo:[],
     assignedtodo:[]
 
@@ -241,8 +241,47 @@ app.get("/deletetodo", function (req, res) {
         //delete
         User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { mytodo: { postId: ObjectId(requestedPost) } } },
             { safe: true, multi: true }, (err) => {
-            if (!err) {
                 console.log(err);
+                User.updateMany({ _id: ObjectId(requestedUser) }, { $pull: { team: [{ assignedtodo:{postId: ObjectId(requestedPost)} }] } },
+                { safe: true, multi: true }, (err) => {
+                    console.log(err);
+                if (!err) {
+                    res.redirect(req.query.user);
+                }
+                else {
+                    console.log(err);
+                    res.redirect(req.query.user);
+                }
+            }
+            );
+    
+
+
+
+           
+        }
+        );
+
+  
+    }
+
+    else {
+        res.redirect("/signin#LoginSignup");
+    }
+
+});
+
+
+app.get("/deleteteam", function (req, res) {
+    const requestedUser = req.query.uid;
+    const requestedPost = req.query.tid;
+    if (req.isAuthenticated()) {
+
+        //delete
+        User.updateMany({ _id: ObjectId(requestedUser) }, { $pull: { team: { _id: ObjectId(requestedPost) } } },
+            { safe: true, multi: true }, (err) => {
+                
+            if (!err) {
                 res.redirect(req.query.user);
             }
             else {
@@ -251,17 +290,7 @@ app.get("/deletetodo", function (req, res) {
         }
         );
 
-        // User.updateOne({ _id:ObjectId(requestedUser),mytodo:{$elemMatch:{postId:ObjectId(requestedPost)}} },[{$set:{status:true}}],
-        //     { safe: true, multi: true }, (err) => {
-        //     if (!err) {
-            
-        //         res.redirect(req.query.user);
-        //     }
-        //     else {
-        //         console.log(err);
-        //     }
-        // }
-        // );
+       
 
     }
 
@@ -270,6 +299,12 @@ app.get("/deletetodo", function (req, res) {
     }
 
 });
+
+
+
+
+
+
 
 app.get("/deleteassign", function (req, res) {
     const requestedUser = req.query.uid;
@@ -280,7 +315,7 @@ app.get("/deleteassign", function (req, res) {
         User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { assignedtodo: { postId: ObjectId(requestedPost) } } },
             { safe: true, multi: true }, (err) => {
             if (!err) {
-                console.log(err);
+                // console.log(err);
                 res.redirect(req.query.user);
             }
             else {
@@ -309,6 +344,44 @@ app.get("/deleteassign", function (req, res) {
 
 });
 
+app.get("/myteam",(req,res)=>{
+    if (req.isAuthenticated()) {
+        var ack="";
+        var ack1="";
+        
+        if(req.query.ack) ack=req.query.ack;
+        if(req.query.ack1) ack1=req.query.ack1;
+        var accountuser;
+        var userid = req.session.passport.user;
+        User.findOne({ _id: userid }, function (err, data) {
+            // console.log(data);
+            if (err) {
+                res.send(data);
+            }
+            else {
+                if(data.post=='Mentor'){
+                    
+                    const team=data.team;
+                    
+                    
+                    
+                res.render("team",{data,team,ack1,ack});
+                }
+
+                else{
+                    res.redirect('/user');
+                }
+                
+            }
+        })
+
+
+    }
+    else {
+        const ack="LIGIN FIRST";
+        res.render("signin",{ack});
+    } 
+})
 // ----------------------------------P O S T-----------------------------------------
 
 app.post("/signup", function (req, res,next) {
@@ -383,50 +456,62 @@ app.post("/signin", (req, res, next) => {
 
   });
 
-// app.post("/addteam",(req,res)=>{
 
-//     if(req.isAuthenticated()){
+app.post("/addteam",(req,res)=>{
+
+    if(req.isAuthenticated()){
 
         
-//         const fromto = "/" + req.query.user;
-//         const postid = ObjectId();
+        const fromto = "/" + req.query.user;
+        const postid = ObjectId();
 
-//         const username=req.body.username;
+        const username=req.body.username;
     
-//         User.findOne({username}, function (err, foundUser) {
-//             if (err) {
-//                 res.redirect("/mentor?err=err");
-//             }
-//             else {
-//                 if (foundUser) {
-//                     User.team.foundUser;
+        User.findOne({username}, function (err, member) {
+            if (err) {
+                res.redirect("/myteam?ack1=err");
+            }
+            else {
+                if (member) {
+                
+                // console.log(member._id)
+            User.updateMany({_id:req.session.passport.user}, { $pull: { team: { _id:member._id } } },
+            { safe: true, multi: true }, (err) => {
+
+            if(err) console.log(err);
+                User.updateOne({_id:req.session.passport.user}, {'$addToSet': {team:member}},(err)=>{
+                    if(!err){
+                        res.redirect(fromto+"?ack1=sucess");
+                    }else{
+                        console.log(err);
+                        res.redirect(fromto+"?ack1=err");
+                    }
+                });
+
+            });
+
                    
-//                     foundUser.save(function (err) {
-//                         if(!err){
-//                             res.redirect("/mentor");
-//                         }else{
-//                             res.redirect("/mentor?ack=err");
-//                         }
-    
-//                     });
-//                 }else{
-//                     res.redirect("/mentor?ack=nf");
+                 
 
-//                 }
-//             }
-//         });
+                }
+                else{
+                    res.redirect("/myteam?ack1=nf");
+
+                }
+            }
+        });
     
     
     
-//     }
+    }
 
-//     else{
+    else{
 
-//         const ack="Login first";
-//         res.render("signin",{ack});
-//     }
+        const ack="Login first";
+        res.render("signin",{ack});
+    }
 
-// });
+});
 
 
 app.post("/assignteam",(req,res)=>{
@@ -438,7 +523,7 @@ app.post("/assignteam",(req,res)=>{
             status:Boolean,
             postId: String
         }
-        const fromto = "/" + req.query.user;
+        const fromto = "/" + req.query.from;
         const postid = ObjectId();
 
         todo.text = req.body.todo;
@@ -455,15 +540,51 @@ app.post("/assignteam",(req,res)=>{
                     foundUser.assignedtodo.push(todo);
                    
                     foundUser.save(function (err) {
-                        if(!err){
-                            res.redirect("/mentor");
-                        }else{
-                            res.redirect("/mentor?ack=err");
-                        }
+                        // if(!err){
+                        //     res.redirect(fromto+"?ack=sucess");
+                        // }else{
+                        //     res.redirect(fromto+"?ack=err");
+                        // }
+
+                        User.findOne({username:req.body.username}, function (err, member) {
+                            if (err) {
+                                res.redirect(fromto+"?ack=err");
+                            }
+                            else {
+                                if (member) {
+
+                                    User.updateMany({_id:req.session.passport.user}, { $pull: { team: { _id:member._id } } },
+                                        { safe: true, multi: true }, (err) => {
+
+
+                
+                                    User.updateOne({_id:req.session.passport.user}, {'$addToSet': {team:member}},(err)=>{
+                                        if(!err){
+                                            res.redirect(fromto+"?ack=sucess");
+                                        }else{
+                                            console.log(err);
+                                            res.redirect(fromto+"?ack=err");
+                                        }
+                                    });
+                                   
+                                });
+
+                                }
+                                else{
+                                    res.redirect("/myteam?ack=nf");
+                
+                                }
+                            }
+                        });
+
+
+
+
     
                     });
-                }else{
-                    res.redirect("/mentor?ack=nf");
+                }
+                else{
+                    res.redirect(fromto+"?ack=nf");
 
                 }
             }
@@ -531,7 +652,6 @@ app.post("/assignself",(req,res)=>{
 
 
 });
-
 
 
 
