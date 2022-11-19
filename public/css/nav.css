@@ -42,3 +42,6 @@ ul li:hover{
     transition: 0.5s;
 
 }
+ul li:hover a{
+    color: white;
+}
