@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/style.css">
-    
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <!--     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
     <title>Document</title>
 </head>
 
@@ -21,113 +21,122 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/">About</a></li>
-                <li><a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                <!-- <li><a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
                         aria-controls="offcanvasExample" id="btn">
                         My info
                     </a>
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
                         aria-labelledby="offcanvasExampleLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">My Info</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <div class="details">
-                
-                                <h2>Name :- <%=data.name%> </h2>
-                                <h2>Email:- <%=data.email%></h2>
-                                <h2>phone:- <%=data.phone%></h2>
-                                <h2>Post :- <%=data.post%></h2>
+
+                                <h2>Name :- <%=data.name%>
+                                </h2>
+                                <h3>Email:- <%=data.email%>
+                                </h3>
+                                <h2>phone:- <%=data.phone%>
+                                </h2>
+                                <h2>Post :- <%=data.post%>
+                                </h2>
                             </div>
                         </div>
                     </div>
-                </li>
-                <li><a href="/logout">Logout</a></li>
+                </li> -->
                 <li><a href="/myteam">My Team Mates</a></li>
-
+                <!-- <li><a href="">Hello :- <%=data.name%></a></li> -->
+                <li><a href="/logout">Logout</a></li>
             </ul>
     </nav>
 
 
-        <div class="middle-box">
-          
-            <div class="input">
-                <center>
+    <div class="middle-box">
 
-                    <h6>ENETR TEAM MEMBER USERNAME TO ADD / refresh its data</h6>
+        <div class="input">
+            <center>
 
-                    <%if(ack1=='sucess') { %>
-                        <p>MEMBER ADDED</p>
-                    <%}%> 
-                    <%if(ack1=='err') { %>
-                        <p>something went wrong</p>
-                    <%}%> 
-                    <%if(ack1=='nf') { %>
-                        <p>username not found</p>
-                    <%}%> 
-                </center>
-                <form action="/addteam?user=myteam" method="post">
-                    <input type="text" placeholder="add team member" name="username">
+                <h6>ENETR TEAM MEMBER USERNAME TO ADD / refresh its data</h6>
+
+                <%if(ack1=='sucess') { %>
+                    <p>MEMBER ADDED</p>
+                    <%}%>
+                        <%if(ack1=='err') { %>
+                            <p>something went wrong</p>
+                            <%}%>
+                                <%if(ack1=='nf') { %>
+                                    <p>username not found</p>
+                                    <%}%>
+            </center>
+            <form action="/addteam?user=myteam" method="post">
+                <input type="text" placeholder="add team member" name="username">
                 <button type="submit">Submit</button>
-                </form>
-            </div>
-            <div class="space">
+            </form>
+        </div>
+        <div class="space">
 
-                <div class="assignedtod">
-                    <h1>MY TEAM</h1>
-                    <% var count1=0; %> 
-                <% team.reverse().forEach(function(item){ %>
+            <div class="assignedtod">
+                <h1>MY TEAM</h1>
+                <% var count1=0; %>
+                    <% team.reverse().forEach(function(item){ %>
 
-                    
 
-                     <div class="teambox">
-                            <p style="color: red;"><%= item.name %>---- @ <%= item.username %> <%=item.phone %>
-                            
-                                <a href="/deleteteam?uid=<%=data._id%>&tid=<%=item._id%>&user=myteam">..DELETE..</a>
-                            
-                            
+
+                        <div class="teambox">
+                            <p style="color: red;">
+                                <%= item.name %>---- @ <%= item.username %>
+                                        <%=item.phone %>
+
+                                            <a
+                                                href="/deleteteam?uid=<%=data._id%>&tid=<%=item._id%>&user=myteam">..DELETE..</a>
+
+
                             </p>
 
                             <% item.assignedtodo.reverse().forEach(function(todo){ %>
-                                <p style="color: green;"><%= todo.text %> </p>
-                           <% }) %> 
+                                <p style="color: green;">
+                                    <%= todo.text %>
+                                </p>
+                                <% }) %>
 
-                     </div>
-                        
-                        
-                        <% count1++ %> 
-                <% }) %> 
+                        </div>
 
-                </div>
 
-                
+                        <% count1++ %>
+                            <% }) %>
 
             </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="right-box">
+        <div class="assing-input">
+            <form action="/assignteam?from=myteam" method="post">
+                <input type="text" placeholder="Enter the mate name" name="username">
+                <input type="text" placeholder="Enter the task" name="todo">
+                <button type="submit">Assign</button>
+            </form>
         </div>
 
-        <div class="right-box">
-            <div class="assing-input">
-                <form action="/assignteam?from=myteam" method="post" >
-                    <input type="text" placeholder="Enter the mate name" name="username">
-                    <input type="text" placeholder="Enter the task" name="todo">
-                    <button type="submit">Assign</button>
-                </form>
-            </div>
-            
-            <%if(ack=='err') { %>
-                <p>something went wrong</p>
-            <%}%> 
-            <%if(ack=='nf') { %>
-                <p>username not found</p>
-            <%}%> 
-            <%if(ack=='sucess') { %>
-                <p>ASSIGNED SUCESSFULLY</p>
-            <%}%> 
-            
-          
-            
-        </div>
+        <%if(ack=='err') { %>
+            <p>something went wrong</p>
+            <%}%>
+                <%if(ack=='nf') { %>
+                    <p>username not found</p>
+                    <%}%>
+                        <%if(ack=='sucess') { %>
+                            <p>ASSIGNED SUCESSFULLY</p>
+                            <%}%>
+
+
+
+    </div>
 
     </div>
 </body>
