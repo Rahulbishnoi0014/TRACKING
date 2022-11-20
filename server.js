@@ -241,7 +241,7 @@ app.get("/deletetodo", function (req, res) {
         //delete
         User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { mytodo: { postId: ObjectId(requestedPost) } } },
             { safe: true, multi: true }, (err) => {
-                console.log(err);
+                // console.log(err);
                 User.updateMany({ _id: ObjectId(requestedUser) }, { $pull: { team: [{ assignedtodo: { postId: ObjectId(requestedPost) } }] } },
                     { safe: true, multi: true }, (err) => {
                         console.log(err);
