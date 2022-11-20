@@ -1,104 +1,123 @@
-<%- include('part/header')%>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>Document</title>
+</head>
 
-<body>
+<body class="mentor">
+    <nav>
+        <h2>Tracking System</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <!-- <li><a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                            aria-controls="offcanvasExample" id="btn">
+                            My info
+                        </a>
+                        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                            aria-labelledby="offcanvasExampleLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasExampleLabel">My Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <div class="details">
+    
+                                    <h2>Name :- <%=data.name%>
+                                    </h2>
+                                    <h3>Email:- <%=data.email%>
+                                    </h3>
+                                    <h2>phone:- <%=data.phone%>
+                                    </h2>
+                                    <h2>Post :- <%=data.post%>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
+                <li><a href="/">My Team Mates</a></li>
+                <!-- <li><a href="">Hello :- <%=data.name%></a></li> -->
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+    </nav>
     <div class="main-box">
-        <div class="left-box">
-            <h1>Login Details</h1>
-            <div class="details">
-                <h2>Name :- <%=data.name%> </h2>
-                <h2>Email:- <%=data.email%></h2>
-                <h2>phone:- <%=data.phone%></h2>
-                <h2>Post :- <%=data.post%></h2>
-            </div>
-            <div class="links">
-                <button><a href="/logout">Logout</a></button>
-                <button><a href="/">My Account</a></button>
-                <button><a href="/">Extra </a></button>
-                <button><a href="/">Extra </a></button>
-
-            </div>
-        </div>
-        <div class="middle-box">
-            <!--             
-            <div class="card">
-                <div class="user-name"><h1>Sourabh</h1></div>
-                <div class="task"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus in molestias voluptatum quia voluptas laborum fuga temporibus obcaecati consectetur explicabo, velit, quam aliquam qui odio vitae! Cumque, vitae neque?</p></div>
-            </div>
-            <div class="card">
-                <div class="user-name"><h1>Sourabh</h1></div>
-                <div class="task"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus in molestias voluptatum quia voluptas laborum fuga temporibus obcaecati consectetur explicabo, velit, quam aliquam qui odio vitae! Cumque, vitae neque?</p></div>
-            </div> -->
-
-
-            <div class="input">
-                <form action="/assignself?user=user" method="post">
-                    <input type="text" placeholder="Todo" name="todo">
-                <!-- <textarea name="" id="" cols="10" rows="5" > -->
-                <button type="submit">Submit</button>
-            </div>
-            <div class="space">
+        <div class="todo-assign-box">
+            <div class="middle-box">
+                <h1>PERSONAL TODO</h1>
+                <div class="input">
+                    <form action="/assignself?user=user" method="post">
+                        <input type="text" placeholder="Todo" name="todo">
+                        <button type="submit">Submit</button>
+                </div>
                 <div class="mytodo">
-                    <h1>MY TODO</h1>
-                    <% var count=0; %> 
-                    <% mytodo.reverse().forEach(function(item){ %>
-    
-                        <% if(item.status==false){%>
-                            <p id=<%=count%> style="color: red;"><%=item.text%>
-                       
-                       <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..DELETE..</a>
-                    </p>
-                       
-                            <% }%> 
-                        <% if(item.status==true){%>
-                            <p id=<%=count%> style="color: green;  text-decoration: line-through;"><%=item.text%>
-                            
-                                <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
-                            </p>   
-                            <% }%> 
-                            
-                            <% count++ %> 
-                    <% }) %> 
-    
+                    <% var count=0; %>
+                        <% mytodo.reverse().forEach(function(item){ %>
+
+                            <% if(item.status==false){%>
+                                <div class="todo">
+                                    <p id=<%=count%>><%=item.text%>
+                                    </p>
+                                    <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user"><i
+                                            class="bi bi-trash"></i></a>
+                                </div>
+
+                                <% }%>
+                                    <% if(item.status==true){%>
+                                        <h1 id=<%=count%> style="color: green; text-decoration: line-through;">
+                                            <%=item.text%>
+
+                                                <a
+                                                    href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
+                                        </h1>
+                                        <% }%>
+
+                                            <% count++ %>
+                                                <% }) %>
+
 
                 </div>
-
-                <div class="assignedtod">
+            </div>
+            <div class="right-box">
+                <div class="assignedtod mytodo">
                     <h1>Assigned TODO</h1>
-                    <% var count1=0; %> 
-                <% assignedtodo.reverse().forEach(function(item){ %>
+                    <% var count1=0; %>
+                        <% assignedtodo.reverse().forEach(function(item){ %>
+                            <div class="todo">
 
-                    <% if(item.status==false){%>
-                        <p id=<%=count1%> style="color: red;"><%=item.text%>
-                   
-                   <a href="/deleteassign?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..DELETE..</a>
-                </p>
-                   
-                        <% }%> 
-                    <% if(item.status==true){%>
-                        <p id=<%=count1%> style="color: green;  text-decoration: line-through;"><%=item.text%>
-                        
-                            <a href="/deleteassign?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
-                        </p>   
-                        <% }%> 
-                        
-                        <% count1++ %> 
-                <% }) %> 
+                                <% if(item.status==false){%>
+                                    <p id=<%=count1%>><%=item.text%>
+                                    </p>
+                                    <a href="/deleteassign?uid=<%=data._id%>&tid=<%=item.postId%>&user=user"><i
+                                            class="bi bi-trash"></i></a>
+                            </div>
+
+
+                            <% }%>
+                                <% if(item.status==true){%>
+                                    <p id=<%=count1%> style="color: green; text-decoration: line-through;">
+                                        <%=item.text%>
+
+                                            <a
+                                                href="/deleteassign?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
+                                    </p>
+                                    <% }%>
+
+                                        <% count1++ %>
+                                            <% }) %>
 
                 </div>
+            </div>
 
-            </div>
         </div>
-        <!-- <div class="right-box">
-            <div class="assing-input">
-                <form action="">
-                    <input type="text" placeholder="Enter the mate name">
-                    <input type="text" placeholder="Enter the task">
-                    <button>Assign</button>
-                </form>
-            </div>
-        </div> -->
     </div>
+
 </body>
 
 <%- include('part/footer')%>
