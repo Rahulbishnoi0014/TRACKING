@@ -48,11 +48,11 @@ const userSchema = new mongoose.Schema({
     phone: Number,
     password: String,
     googleId: String,
-    post:String,
-    
-    team:[],
-    mytodo:[],
-    assignedtodo:[]
+    post: String,
+
+    team: [],
+    mytodo: [],
+    assignedtodo: []
 
 });
 
@@ -79,7 +79,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/google/dash"
 
-    
+
     // userProfileURL:"http://www.googleapis.com/oauth2/v3/userinfo"
 
 },
@@ -112,7 +112,7 @@ app.get("/auth/google/dash",
 
 // ----------------------------------G E T-----------------------------------------
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.redirect("/mentor");
 })
 
@@ -120,34 +120,34 @@ app.get("/",(req,res)=>{
 app.get("/signin", function (req, res) {
     const response = req.query.error;
     // var x=req.isAuthenticated();
-    const ack="";
-        res.render("signin",{ack});
+    const ack = "";
+    res.render("signin", { ack });
 });
 
 
-app.get("/dash",(req,res)=>{
+app.get("/dash", (req, res) => {
 
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         res.render("home");
 
-    }else{
-        const ack="LIGIN FIRST";
-        res.render("signin",{ack});
+    } else {
+        const ack = "LIGIN FIRST";
+        res.render("signin", { ack });
     }
 
 
 })
-app.get("/signup",(req,res)=>{
+app.get("/signup", (req, res) => {
     res.render("signup");
 })
 
-app.get("/mentor",(req,res)=>{
+app.get("/mentor", (req, res) => {
 
     if (req.isAuthenticated()) {
-        var ack="";
-        
-        if(req.query.ack) ack=req.query.ack;
-        
+        var ack = "";
+
+        if (req.query.ack) ack = req.query.ack;
+
         var accountuser;
         var userid = req.session.passport.user;
         User.findOne({ _id: userid }, function (err, data) {
@@ -156,27 +156,27 @@ app.get("/mentor",(req,res)=>{
                 res.send(data);
             }
             else {
-                if(data.post=='Mentor'){
-                    
-                    const mytodo=data.mytodo;
-                    
-                    
-                    
-                res.render("mentor",{data,mytodo,ack});
+                if (data.post == 'Mentor') {
+
+                    const mytodo = data.mytodo;
+
+
+
+                    res.render("mentor", { data, mytodo, ack });
                 }
 
-                else{
+                else {
                     res.redirect('/user');
                 }
-                
+
             }
         })
 
 
     }
     else {
-        const ack="LIGIN FIRST";
-        res.render("signin",{ack});
+        const ack = "LIGIN FIRST";
+        res.render("signin", { ack });
     }
 
 })
@@ -185,8 +185,8 @@ app.get("/mentor",(req,res)=>{
 
 
 
-app.get("/user",(req,res)=>{
-     if (req.isAuthenticated()) {
+app.get("/user", (req, res) => {
+    if (req.isAuthenticated()) {
 
         var accountuser;
         var userid = req.session.passport.user;
@@ -196,14 +196,14 @@ app.get("/user",(req,res)=>{
                 res.send(data);
             }
             else {
-                const mytodo=data.mytodo;
-                const assignedtodo=data.assignedtodo;
-                if(data.post=='Mentor'){
+                const mytodo = data.mytodo;
+                const assignedtodo = data.assignedtodo;
+                if (data.post == 'Mentor') {
                     res.redirect('/mentor');
                 }
 
-                else{
-                    res.render("user",{data,mytodo,assignedtodo});
+                else {
+                    res.render("user", { data, mytodo, assignedtodo });
 
                 }
             }
@@ -212,8 +212,8 @@ app.get("/user",(req,res)=>{
 
     }
     else {
-        const ack="Login first";
-        res.render("signin",{ack});
+        const ack = "Login first";
+        res.render("signin", { ack });
     }
 })
 
@@ -242,27 +242,27 @@ app.get("/deletetodo", function (req, res) {
         User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { mytodo: { postId: ObjectId(requestedPost) } } },
             { safe: true, multi: true }, (err) => {
                 console.log(err);
-                User.updateMany({ _id: ObjectId(requestedUser) }, { $pull: { team: [{ assignedtodo:{postId: ObjectId(requestedPost)} }] } },
-                { safe: true, multi: true }, (err) => {
-                    console.log(err);
-                if (!err) {
-                    res.redirect(req.query.user);
-                }
-                else {
-                    console.log(err);
-                    res.redirect(req.query.user);
-                }
+                User.updateMany({ _id: ObjectId(requestedUser) }, { $pull: { team: [{ assignedtodo: { postId: ObjectId(requestedPost) } }] } },
+                    { safe: true, multi: true }, (err) => {
+                        console.log(err);
+                        if (!err) {
+                            res.redirect(req.query.user);
+                        }
+                        else {
+                            console.log(err);
+                            res.redirect(req.query.user);
+                        }
+                    }
+                );
+
+
+
+
+
             }
-            );
-    
-
-
-
-           
-        }
         );
 
-  
+
     }
 
     else {
@@ -280,17 +280,17 @@ app.get("/deleteteam", function (req, res) {
         //delete
         User.updateMany({ _id: ObjectId(requestedUser) }, { $pull: { team: { _id: ObjectId(requestedPost) } } },
             { safe: true, multi: true }, (err) => {
-                
-            if (!err) {
-                res.redirect(req.query.user);
+
+                if (!err) {
+                    res.redirect(req.query.user);
+                }
+                else {
+                    res.redirect(req.query.user);
+                }
             }
-            else {
-                res.redirect(req.query.user);
-            }
-        }
         );
 
-       
+
 
     }
 
@@ -314,20 +314,20 @@ app.get("/deleteassign", function (req, res) {
         //delete
         User.updateOne({ _id: ObjectId(requestedUser) }, { $pull: { assignedtodo: { postId: ObjectId(requestedPost) } } },
             { safe: true, multi: true }, (err) => {
-            if (!err) {
-                // console.log(err);
-                res.redirect(req.query.user);
+                if (!err) {
+                    // console.log(err);
+                    res.redirect(req.query.user);
+                }
+                else {
+                    res.redirect(req.query.user);
+                }
             }
-            else {
-                res.redirect(req.query.user);
-            }
-        }
         );
 
         // User.updateOne({ _id:ObjectId(requestedUser),mytodo:{$elemMatch:{postId:ObjectId(requestedPost)}} },[{$set:{status:true}}],
         //     { safe: true, multi: true }, (err) => {
         //     if (!err) {
-            
+
         //         res.redirect(req.query.user);
         //     }
         //     else {
@@ -344,13 +344,13 @@ app.get("/deleteassign", function (req, res) {
 
 });
 
-app.get("/myteam",(req,res)=>{
+app.get("/myteam", (req, res) => {
     if (req.isAuthenticated()) {
-        var ack="";
-        var ack1="";
-        
-        if(req.query.ack) ack=req.query.ack;
-        if(req.query.ack1) ack1=req.query.ack1;
+        var ack = "";
+        var ack1 = "";
+
+        if (req.query.ack) ack = req.query.ack;
+        if (req.query.ack1) ack1 = req.query.ack1;
         var accountuser;
         var userid = req.session.passport.user;
         User.findOne({ _id: userid }, function (err, data) {
@@ -359,32 +359,32 @@ app.get("/myteam",(req,res)=>{
                 res.send(data);
             }
             else {
-                if(data.post=='Mentor'){
-                    
-                    const team=data.team;
-                    
-                    
-                    
-                res.render("team",{data,team,ack1,ack});
+                if (data.post == 'Mentor') {
+
+                    const team = data.team;
+
+
+
+                    res.render("team", { data, team, ack1, ack });
                 }
 
-                else{
+                else {
                     res.redirect('/user');
                 }
-                
+
             }
         })
 
 
     }
     else {
-        const ack="LIGIN FIRST";
-        res.render("signin",{ack});
-    } 
+        const ack = "LIGIN FIRST";
+        res.render("signin", { ack });
+    }
 })
 // ----------------------------------P O S T-----------------------------------------
 
-app.post("/signup", function (req, res,next) {
+app.post("/signup", function (req, res, next) {
     const newUser = new User({
         name: req.body.name,
         username: req.body.username,
@@ -405,24 +405,24 @@ app.post("/signup", function (req, res,next) {
         else {
             passport.authenticate("local", (err, user, info) => {
                 if (err) throw err;
-                if (!user){
-                  const ack="NO USER FOUND";
-                  res.render("signin",{ack});
+                if (!user) {
+                    const ack = "NO USER FOUND";
+                    res.render("signin", { ack });
                 }
                 else {
-                  req.logIn(user, (err) => {
-                    if (err) throw err;
-                  if(user.post=='Mentor'){
-                      res.redirect("/mentor");
-                  }
-                  else{
-                      res.redirect("/user");
-                  }
-          
-          
-                  });
+                    req.logIn(user, (err) => {
+                        if (err) throw err;
+                        if (user.post == 'Mentor') {
+                            res.redirect("/mentor");
+                        }
+                        else {
+                            res.redirect("/user");
+                        }
+
+
+                    });
                 }
-              })(req, res, next);
+            })(req, res, next);
         }
     })
 
@@ -434,103 +434,113 @@ app.post("/signup", function (req, res,next) {
 
 app.post("/signin", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
-      if (err) throw err;
-      if (!user){
-        const ack="NO USER FOUND";
-        res.render("signin",{ack});
-      }
-      else {
-        req.logIn(user, (err) => {
-          if (err) throw err;
-        if(user.post=='Mentor'){
-            res.redirect("/mentor");
+        if (err) throw err;
+        if (!user) {
+            const ack = "NO USER FOUND";
+            res.render("signin", { ack });
         }
-        else{
-            res.redirect("/user");
-        }
+        else {
+            req.logIn(user, (err) => {
+                if (err) throw err;
+                if (user.post == 'Mentor') {
+                    res.redirect("/mentor");
+                }
+                else {
+                    res.redirect("/user");
+                }
 
 
-        });
-      }
+            });
+        }
     })(req, res, next);
 
-  });
+});
 
 
-app.post("/addteam",(req,res)=>{
+app.post("/addteam", (req, res) => {
 
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
 
-        
+
         const fromto = "/" + req.query.user;
         const postid = ObjectId();
 
-        const username=req.body.username;
-    
-        User.findOne({username}, function (err, member) {
+        const username = req.body.username;
+
+        User.findOne({ username }, function (err, member) {
             if (err) {
                 res.redirect("/myteam?ack1=err");
             }
             else {
                 if (member) {
-                
-                // console.log(member._id)
-            User.updateMany({_id:req.session.passport.user}, { $pull: { team: { _id:member._id } } },
-            { safe: true, multi: true }, (err) => {
 
-            if(err) console.log(err);
-                User.updateOne({_id:req.session.passport.user}, {'$addToSet': {team:member}},(err)=>{
-                    if(!err){
-                        res.redirect(fromto+"?ack1=sucess");
-                    }else{
-                        console.log(err);
-                        res.redirect(fromto+"?ack1=err");
-                    }
-                });
+                    // console.log(member._id)
+                    User.updateMany({ _id: req.session.passport.user }, { $pull: { team: { _id: member._id } } },
+                        { safe: true, multi: true }, (err) => {
 
-            });
+                            if (err) console.log(err);
+                            User.updateOne({ _id: req.session.passport.user }, { '$addToSet': { team: member } }, (err) => {
+                                if (!err) {
+                                    res.redirect(fromto + "?ack1=sucess");
+                                } else {
+                                    console.log(err);
+                                    res.redirect(fromto + "?ack1=err");
+                                }
+                            });
 
-                   
-                 
+                        });
+
+
+
 
                 }
-                else{
+                else {
                     res.redirect("/myteam?ack1=nf");
 
                 }
             }
         });
-    
-    
-    
+
+
+
     }
 
-    else{
+    else {
 
-        const ack="Login first";
-        res.render("signin",{ack});
+        const ack = "Login first";
+        res.render("signin", { ack });
     }
 
 });
 
 
-app.post("/assignteam",(req,res)=>{
+app.post("/assignteam", (req, res) => {
 
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
 
         const todo = {
             text: String,
-            status:Boolean,
+            status: Boolean,
             postId: String
         }
         const fromto = "/" + req.query.from;
         const postid = ObjectId();
 
-        todo.text = req.body.todo;
-        todo.status=false;
-        todo.postId = postid;
-    
-        User.findOne({username:req.body.username}, function (err, foundUser) {
+        User.findById(req.session.passport.user, (err, data) => {
+            console.log(data.username);
+            if (!err) {
+                var todotext = req.body.todo + " --- " + data.username;
+                console.log(todotext)
+                todo.text = todotext;
+                todo.status = false;
+                todo.postId = postid;
+
+            }
+            else res.redirect(fromto + "?ack=err");
+        })
+
+
+        User.findOne({ username: req.body.username }, function (err, foundUser) {
             if (err) {
                 alert("user not found");
             }
@@ -538,7 +548,7 @@ app.post("/assignteam",(req,res)=>{
                 if (foundUser) {
                     foundUser.lastupdate = new Date;
                     foundUser.assignedtodo.push(todo);
-                   
+
                     foundUser.save(function (err) {
                         // if(!err){
                         //     res.redirect(fromto+"?ack=sucess");
@@ -546,33 +556,33 @@ app.post("/assignteam",(req,res)=>{
                         //     res.redirect(fromto+"?ack=err");
                         // }
 
-                        User.findOne({username:req.body.username}, function (err, member) {
+                        User.findOne({ username: req.body.username }, function (err, member) {
                             if (err) {
-                                res.redirect(fromto+"?ack=err");
+                                res.redirect(fromto + "?ack=err");
                             }
                             else {
                                 if (member) {
 
-                                    User.updateMany({_id:req.session.passport.user}, { $pull: { team: { _id:member._id } } },
+                                    User.updateMany({ _id: req.session.passport.user }, { $pull: { team: { _id: member._id } } },
                                         { safe: true, multi: true }, (err) => {
 
 
-                
-                                    User.updateOne({_id:req.session.passport.user}, {'$addToSet': {team:member}},(err)=>{
-                                        if(!err){
-                                            res.redirect(fromto+"?ack=sucess");
-                                        }else{
-                                            console.log(err);
-                                            res.redirect(fromto+"?ack=err");
-                                        }
-                                    });
-                                   
-                                });
+
+                                            User.updateOne({ _id: req.session.passport.user }, { '$addToSet': { team: member } }, (err) => {
+                                                if (!err) {
+                                                    res.redirect(fromto + "?ack=sucess");
+                                                } else {
+                                                    console.log(err);
+                                                    res.redirect(fromto + "?ack=err");
+                                                }
+                                            });
+
+                                        });
 
                                 }
-                                else{
+                                else {
                                     res.redirect("/myteam?ack=nf");
-                
+
                                 }
                             }
                         });
@@ -580,46 +590,46 @@ app.post("/assignteam",(req,res)=>{
 
 
 
-    
+
                     });
                 }
-                else{
-                    res.redirect(fromto+"?ack=nf");
+                else {
+                    res.redirect(fromto + "?ack=nf");
 
                 }
             }
         });
-    
-    
-    
+
+
+
     }
 
-    else{
+    else {
 
-        const ack="Login first";
-        res.render("signin",{ack});
+        const ack = "Login first";
+        res.render("signin", { ack });
     }
 
 });
 
 
-app.post("/assignself",(req,res)=>{
+app.post("/assignself", (req, res) => {
 
 
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
 
         const todo = {
             text: String,
-            status:Boolean,
+            status: Boolean,
             postId: String
         }
         const fromto = "/" + req.query.user;
         const postid = ObjectId();
 
         todo.text = req.body.todo;
-        todo.status=false;
+        todo.status = false;
         todo.postId = postid;
-    
+
         User.findById(req.session.passport.user, function (err, foundUser) {
             if (err) {
                 res.send(err);
@@ -628,26 +638,26 @@ app.post("/assignself",(req,res)=>{
                 if (foundUser) {
                     foundUser.lastupdate = new Date;
                     foundUser.mytodo.push(todo);
-                   
+
                     foundUser.save(function (err) {
-                        if(!err){
+                        if (!err) {
                             res.redirect(fromto);
-                        }else{
+                        } else {
                             res.send(err);
                         }
-    
+
                     });
                 }
             }
         });
-    
-    
-    
+
+
+
     }
 
-    else{
-        const ack="Login first";
-        res.render("signin",{ack});
+    else {
+        const ack = "Login first";
+        res.render("signin", { ack });
     }
 
 
@@ -657,6 +667,6 @@ app.post("/assignself",(req,res)=>{
 
 
 
-app.listen("3000",()=>{
+app.listen("3000", () => {
     console.log("server started at port : 3000")
 })
