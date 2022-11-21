@@ -69,7 +69,7 @@
                             <p id="success">MEMBER ADDED</p>
                             <%}%>
                                 <%if(ack1=='err') { %>
-                                    <p >something went wrong</p>
+                                    <p>something went wrong</p>
                                     <%}%>
                                         <%if(ack1=='nf') { %>
                                             <p id="error">username not found</p>
@@ -128,7 +128,7 @@
                     <div class="assing-input">
                         <form action="/assignteam?from=myteam" method="post">
                             <input type="text" placeholder="Enter the mate name" name="username">
-                            <input type="text" placeholder="Enter the task" name="todo">
+                            <input type="text" placeholder="Enter the task" name="todo" required>
                             <button type="submit">Assign</button>
                         </form>
                     </div>
@@ -141,7 +141,7 @@
                                     <p id="error">username not found</p>
                                     <%}%>
                                         <%if(ack=='sucess') { %>
-                                            <p id="success">ASSIGNED SUCESSFULLY</p>
+                                            <p id="success">ASSIGNED</p>
                                             <%}%>
                     </div>
 

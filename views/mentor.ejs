@@ -55,7 +55,7 @@
                 <h1>PERSONAL TODO</h1>
                 <div class="input">
                     <form action="/assignself?user=mentor" method="post">
-                        <input type="text" placeholder="Todo" name="todo">
+                        <input type="text" placeholder="Todo" name="todo" required>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
@@ -96,7 +96,7 @@
                     <div class="assing-input">
                         <form action="/assignteam?from=mentor" method="post">
                             <input type="text" placeholder="Enter the mate name" name="username">
-                            <input type="text" placeholder="Enter the task" name="todo">
+                            <input type="text" placeholder="Enter the task" name="todo" required>
                             <button type="submit" class="btn bg-dark text-light">Assign</button>
                         </form>
                     </div>
@@ -110,7 +110,7 @@
                                     <p id="error">username not found</p>
                                     <%}%>
                                         <%if(ack=='sucess') { %>
-                                            <p id="success">ASSIGNED SUCESSFULLY</p>
+                                            <p id="success">ASSIGNED</p>
                                             <%}%>
                     </div>
 

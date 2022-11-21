@@ -527,78 +527,87 @@ app.post("/assignteam", (req, res) => {
         const postid = ObjectId();
 
         User.findById(req.session.passport.user, (err, data) => {
-            console.log(data.username);
+            // console.log(data.username);
             if (!err) {
                 var todotext = req.body.todo + " --- " + data.username;
-                console.log(todotext)
+                // console.log(todotext)
                 todo.text = todotext;
                 todo.status = false;
                 todo.postId = postid;
 
+                User.findOne({ username: req.body.username }, function (err, foundUser) {
+                    if (err) {
+                        console.log(err);
+                        alert("user not found");
+                    }
+                    else {
+                        if (foundUser) {
+                            foundUser.lastupdate = new Date;
+                            foundUser.assignedtodo.push(todo);
+        
+                            foundUser.save(function (err) {
+                                // if(!err){
+                                //     res.redirect(fromto+"?ack=sucess");
+                                // }else{
+                                //     res.redirect(fromto+"?ack=err");
+                                // }
+        
+                                User.findOne({ username: req.body.username }, function (err, member) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.redirect(fromto + "?ack=err");
+                                    }
+                                    else {
+                                        if (member) {
+        
+                                            User.updateMany({ _id: req.session.passport.user }, { $pull: { team: { _id: member._id } } },
+                                                { safe: true, multi: true }, (err) => {
+        
+        
+        
+                                                    User.updateOne({ _id: req.session.passport.user }, { '$addToSet': { team: member } }, (err) => {
+                                                        if (!err) {
+                                                            res.redirect(fromto + "?ack=sucess");
+                                                        } else {
+                                                            console.log(err);
+                                                            res.redirect(fromto + "?ack=err");
+                                                        }
+                                                    });
+        
+                                                });
+        
+                                        }
+                                        else {
+                                            console.log(err);
+                                            res.redirect("/myteam?ack=nf");
+        
+                                        }
+                                    }
+                                });
+        
+        
+        
+        
+        
+                            });
+                        }
+                        else {
+                            console.log(err);
+                            res.redirect(fromto + "?ack=nf");
+        
+                        }
+                    }
+                });
+
             }
-            else res.redirect(fromto + "?ack=err");
+            else{
+                console.log(err);
+                res.redirect(fromto + "?ack=err");
+            }
         })
 
 
-        User.findOne({ username: req.body.username }, function (err, foundUser) {
-            if (err) {
-                alert("user not found");
-            }
-            else {
-                if (foundUser) {
-                    foundUser.lastupdate = new Date;
-                    foundUser.assignedtodo.push(todo);
-
-                    foundUser.save(function (err) {
-                        // if(!err){
-                        //     res.redirect(fromto+"?ack=sucess");
-                        // }else{
-                        //     res.redirect(fromto+"?ack=err");
-                        // }
-
-                        User.findOne({ username: req.body.username }, function (err, member) {
-                            if (err) {
-                                res.redirect(fromto + "?ack=err");
-                            }
-                            else {
-                                if (member) {
-
-                                    User.updateMany({ _id: req.session.passport.user }, { $pull: { team: { _id: member._id } } },
-                                        { safe: true, multi: true }, (err) => {
-
-
-
-                                            User.updateOne({ _id: req.session.passport.user }, { '$addToSet': { team: member } }, (err) => {
-                                                if (!err) {
-                                                    res.redirect(fromto + "?ack=sucess");
-                                                } else {
-                                                    console.log(err);
-                                                    res.redirect(fromto + "?ack=err");
-                                                }
-                                            });
-
-                                        });
-
-                                }
-                                else {
-                                    res.redirect("/myteam?ack=nf");
-
-                                }
-                            }
-                        });
-
-
-
-
-
-                    });
-                }
-                else {
-                    res.redirect(fromto + "?ack=nf");
-
-                }
-            }
-        });
+        
 
 
 
