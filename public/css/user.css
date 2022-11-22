@@ -83,7 +83,9 @@
     overflow: scroll;
 }
 .mentor .assignedtod{
-    height: 25rem;
+    padding-top: 3px;
+    height: 71vh;
+    /* border: 2px solid red; */
 }
 
 .mentor .mytodo::-webkit-scrollbar {
