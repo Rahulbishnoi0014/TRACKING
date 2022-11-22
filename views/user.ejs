@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="css/user.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <title>Document</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Orbitron&family=Playfair+Display+SC&family=Rajdhani&display=swap" rel="stylesheet">
+   
+   
+    <title>TRACKING SYSTEM</title>
 </head>
 
 <body class="mentor">
@@ -20,9 +26,9 @@
         </a>
         <div class="navbar-links">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">My Team Mates</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/myaccount">Profile</a></li>
+                <li><a href="/myteam">My Team Mates</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
@@ -41,7 +47,7 @@
                     <% var count=0; %>
                         <% mytodo.reverse().forEach(function(item){ %>
 
-                            <% if(item.status==false){%>
+                            
                                 <div class="todo">
                                     <p id=<%=count%>><%=item.text%>
                                     </p>
@@ -49,15 +55,8 @@
                                             class="bi bi-trash"></i></a>
                                 </div>
 
-                                <% }%>
-                                    <% if(item.status==true){%>
-                                        <h1 id=<%=count%> style="color: green; text-decoration: line-through;">
-                                            <%=item.text%>
-
-                                                <a
-                                                    href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=user">..UNDO..</a>
-                                        </h1>
-                                        <% }%>
+                              
+                                
 
                                             <% count++ %>
                                                 <% }) %>

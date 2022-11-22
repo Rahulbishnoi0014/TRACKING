@@ -1,74 +1,50 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/signinup.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Orbitron&family=Playfair+Display+SC&family=Rajdhani&display=swap" rel="stylesheet">
+
+
     <title>SignIn</title>
 </head>
 
-    <body class="signup">
-        <div id="bg-image"></div>
-        <!-- <div class="container">
-            <a href="/signup" id="login">
-                <p>SignUp</p>
-            </a>
-            <form action="/signin" method="post">
-                <div class="box" id='loginBox'>
-                    <h2>Login</h2>
-                    <p>
-                        <%= ack %>
-                    </p>
-                    <div class="flex">
-                        <label for="name">Username</label>
-                        <input type="text" placeholder='Username' id='name' name="username" />
-                    </div>
-                    <div class="flex">
-                        <label for="password">Password</label>
-                        <input type="password" placeholder='Enter password' id='password' name="password" />
-                    </div>
-                    <button type='sumbit'>Login</button>
-                </div>
-            </form>
-            <div id="extrabox">
-                <div>
-                    <p id='EB-p1'>TRACK YOUR WORK WITH US</p>
-                    <br />
-                    <p id='EB-p1'>Sign Up If You Don't Have An Account</p>
+<body class="signup">
+    <div id="bg-image"></div>
+    <div class="sign-boxes">
+        <div class="sign-middle-box signin-b1" id="signin-b1">
+            <!-- <h1>Tracking System</h1> -->
+            <h1>Welcome Back</h1>
+            <p>A myriad of tracking systems exists. Some are 'lag time' indicators, that is, the data is collected
+                after an item has passed a point</p>
 
-                </div>
-
-            </div>
-        </div> -->
-        <div class="sign-boxes">
-            <div class="sign-middle-box signin-b1" id="signin-b1">
-                <!-- <h1>Tracking System</h1> -->
-                <h1>Welcome Back</h1>
-                <p>A myriad of tracking systems exists. Some are 'lag time' indicators, that is, the data is collected
-                    after an item has passed a point</p>
-
-                <h4>Already have an account</h4>
-                <button class="signup-button" id="submit"><a href="/signup" id="login">SignUp</a></button>
-            </div>
-
-
-            <div class="sign-right-box signin-b2" id="signin-b2">
-                <h1>Login</h1>
-                <form action="/signin" method="post">
-                    <p>
-                        <%= ack %>
-                    </p>
-                    <div class="flex">
-                        <label for="name">Username</label>
-                        <input type="text" placeholder='Username' id='name' name="username" />
-                    </div>
-                    <div class="flex">
-                        <label for="password">Password</label>
-                        <input type="password" placeholder='Enter password' id='password' name="password" />
-                    </div>
-                    <button type='sumbit' id="login">Login</button>
-                </form>
-            </div>
+            <h4>Already have an account</h4>
+            <button class="signup-button" id="submit"><a href="/signup" id="login">SignUp</a></button>
         </div>
-    </body>
-    <%- include("part/footer") %>
+
+
+        <div class="sign-right-box signin-b2" id="signin-b2">
+            <h1>Login</h1>
+            <form action="/signin" method="post">
+                <p>
+                    <%= ack %>
+                </p>
+                <div class="flex">
+                    <label for="name">Username</label>
+                    <input type="text" placeholder='Username' id='name' name="username" />
+                </div>
+                <div class="flex">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder='Enter password' id='password' name="password" />
+                </div>
+                <button type='sumbit' id="login">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+<%- include("part/footer") %>
