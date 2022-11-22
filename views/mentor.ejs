@@ -38,7 +38,7 @@
         <div class="todo-assign-box">
             <div class="middle-box">
 
-                <h1>PERSONAL TODO</h1>
+                <h1 style="color: rgb(21, 106, 136);">PERSONAL TODO</h1>
                 <div class="input">
                     <form action="/assignself?user=mentor" method="post">
                         <input type="text" placeholder="Todo" name="todo" required>
@@ -56,7 +56,7 @@
                                     <p id=<%=count%>><%=item.text%>
                                     </p>
                                     <a href="/deletetodo?uid=<%=data._id%>&tid=<%=item.postId%>&user=mentor"
-                                        style="color: rgb(56, 72, 197);"><i class="bi bi-trash"></i></a>
+                                        ><i class="bi bi-trash"></i></a>
                                 </div>
 
                                 
@@ -69,7 +69,7 @@
             </div>
             <div class="right-box">
                 <div class="asin-task">
-                    <h1>ASSIGN TASK</h1>
+                    <h1 style="color: rgb(21, 106, 136);">ASSIGN TASK</h1>
 
                     <div class="assing-input">
                         <form action="/assignteam?from=mentor" method="post">

@@ -4,9 +4,11 @@
 }
 
 .mentor {
-    background: linear-gradient(90deg,
+    /* background: linear-gradient(90deg,
             rgba(48, 16, 255, 1) 0%,
-            rgba(100, 115, 255, 1) 100%);
+            rgba(100, 115, 255, 1) 100%); */
+            /* background-color: white; */
+            background-image: url('https://img.freepik.com/premium-vector/elegant-white-texture-background_23-2148438345.jpg?w=360');
 }
 
 .mentor .main-box {
