@@ -40,7 +40,7 @@
             <div class="middle-box">
                 <div class="input">
                     <center>
-                        <h3>ENTER TEAM MEMBER USERNAME TO ADD / refresh its data</h3>
+                        <h3 style="color: rgb(0, 70, 101);">Enter Team Member Username To Add / Refresh Its Data</h3>
 
                         <%if(ack1=='sucess') { %>
                             <p id="success">SUCCESSFULLY</p>
@@ -55,7 +55,7 @@
                     
                     <form action="/addteam?user=myteam" method="post">
                         <input type="text" placeholder="add team member" name="username">
-                        <button type="submit">Submit</button>
+                        <button type="submit">Add</button>
                     </form>
                 </div>
                 <div class="space">
@@ -64,7 +64,7 @@
                             <% team.reverse().forEach(function(item){ %>
                                 <div class="teambox">
                                     <div class="member-name">
-                                        <h3 style="color: red;">
+                                        <h3 style="color: #374374;">
                                             @ <%= item.username %>
                                                 <a href="/deleteteam?uid=<%=data._id%>&tid=<%=item._id%>&user=myteam"><i
                                                         class="bi bi-trash"></i></a>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="member-todo">
                                         <% item.assignedtodo.reverse().forEach(function(todo){ %>
-                                            <p style="color: rgb(255, 255, 255);">
+                                            <p style="color: black;">
                                                 <%= todo.text %>
                                             </p>
                                             <% }) %>
