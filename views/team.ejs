@@ -13,16 +13,6 @@
 </head>
 
 <body class="mentor">
-    <!-- <nav>
-        <h2>Tracking System</h1>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
-
-                <li><a href="/myteam">My Team Mates</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
-    </nav> -->
     <nav class="navbar">
         <div class="brand-tatal">Tracking System</div>
         <a href="#" class="toggle-btn">
@@ -38,20 +28,17 @@
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
-
     </nav>
 
     <div class="main-box">
         <div class="flexe">
             <div class="middle-box">
-
                 <div class="input">
                     <center>
-
                         <h3>ENTER TEAM MEMBER USERNAME TO ADD / refresh its data</h3>
 
                         <%if(ack1=='sucess') { %>
-                            <p id="success">MEMBER ADDED</p>
+                            <p id="success">SUCCESSFULLY</p>
                             <%}%>
                                 <%if(ack1=='err') { %>
                                     <p>something went wrong</p>
@@ -66,23 +53,15 @@
                     </form>
                 </div>
                 <div class="space">
-
                     <div class="assignedtod">
-                        <!-- <h1>MY TEAM</h1> -->
                         <% var count1=0; %>
                             <% team.reverse().forEach(function(item){ %>
-
-
-
                                 <div class="teambox">
                                     <div class="member-name">
                                         <h3 style="color: red;">
                                             @ <%= item.username %>
-
                                                 <a href="/deleteteam?uid=<%=data._id%>&tid=<%=item._id%>&user=myteam"><i
                                                         class="bi bi-trash"></i></a>
-
-
                                         </h3>
                                     </div>
                                     <div class="member-todo">
@@ -92,17 +71,10 @@
                                             </p>
                                             <% }) %>
                                     </div>
-
                                 </div>
-
-
                                 <% count1++ %>
                                     <% }) %>
-
                     </div>
-
-
-
                 </div>
             </div>
 
@@ -118,7 +90,6 @@
                         </form>
                     </div>
                     <div class="ack">
-
                         <%if(ack=='err') { %>
                             <p id="wrong">something went wrong</p>
                             <%}%>
@@ -129,9 +100,7 @@
                                             <p id="success">ASSIGNED</p>
                                             <%}%>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
