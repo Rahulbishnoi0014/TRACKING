@@ -1,0 +1,26 @@
+.myinfo_container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://img.freepik.com/premium-vector/elegant-white-texture-background_23-2148438345.jpg?w=360');
+}
+
+.myinfo_container tr h3 {
+    margin: 10px;
+    font-size: 50px;
+}
+
+.myinfo_container table {
+    border-left: 2px dashed black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 1rem;
+    background-color: whitesmoke;
+}
+
+.myinfo_container img {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}

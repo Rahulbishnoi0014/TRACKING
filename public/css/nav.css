@@ -9,7 +9,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0e1842;
+    background: rgb(0, 70, 101);
+    background: linear-gradient(34deg, rgba(0, 70, 101, 0.8727823893229166) 62%, rgba(139, 219, 219, 1) 100%);
     color: white;
 }
 
@@ -26,14 +27,12 @@
 
 .navbar-links li {
     list-style: none;
-    /* padding: 1rem; */
     border-radius: 10px;
-
-}
-.navbar-links li:hover{
-    background-color: rgb(65, 87, 167); 
 }
 
+.navbar-links li:hover {
+    background-color: rgb(65, 87, 167);
+}
 .navbar-links li a {
     text-decoration: none;
     color: white;
@@ -42,7 +41,6 @@
     display: block;
     border-radius: 10px;
 }
-
 .toggle-btn {
     position: absolute;
     top: .75rem;
@@ -53,14 +51,12 @@
     width: 30px;
     height: 21px;
 }
-
 .toggle-btn .bar {
     height: 3px;
     width: 100%;
     background-color: white;
     border-radius: 10px;
 }
-
 @media screen and (max-width: 500px) {
     .toggle-btn {
         display: flex;
