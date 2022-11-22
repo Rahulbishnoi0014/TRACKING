@@ -80,6 +80,8 @@
 
     .navbar-links li {
         text-align: center;
+    text-transform: capitalize;
+
     }
 
     .navbar-links li a {
