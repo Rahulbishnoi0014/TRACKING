@@ -29,8 +29,18 @@
     list-style: none;
     border-radius: 10px;
 }
+.navbar-links li #name{
+    text-decoration: none;
+    color: white;
+    margin: 0px 10px;
+    padding: 8px 8px;
+    display: block;
+    border-radius: 10px;
+    background-color: blueviolet;
+    cursor:default;
+}
 
-.navbar-links li:hover {
+.navbar-links li a:hover {
     background-color: rgb(65, 87, 167);
 }
 .navbar-links li a {

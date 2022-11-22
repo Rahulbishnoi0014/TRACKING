@@ -31,6 +31,7 @@
                 <li><a href="/myaccount">Profile</a></li>
                 <li><a href="/myteam">My Team Mates</a></li>
                 <li><a href="/logout">Logout</a></li>
+                <li><span id="name">Hello, <%=data.username%></span></li>
             </ul>
         </div>
     </nav>
@@ -49,7 +50,7 @@
                                     <p>something went wrong</p>
                                     <%}%>
                                         <%if(ack1=='nf') { %>
-                                            <p id="error">username not found</p>
+                                            <p id="error">No user found</p>
                                             <%}%>
                     </center>
                     
@@ -100,7 +101,7 @@
                             <p id="wrong">something went wrong</p>
                             <%}%>
                                 <%if(ack=='nf') { %>
-                                    <p id="error">username not found</p>
+                                    <p id="error">No user found</p>
                                     <%}%>
                                         <%if(ack=='sucess') { %>
                                             <p id="success">ASSIGNED</p>
