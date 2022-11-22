@@ -36,6 +36,7 @@
     flex-direction: column;
     border-right: 2px dashed black;
 }
+
 .mentor .input input {
     height: 40px;
     border-radius: 10px;
