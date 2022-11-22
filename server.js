@@ -192,7 +192,7 @@ app.get("/myaccount", (req, res) => {
                 console.log(err);
             }
             else {
-                res.send(data);
+                res.render("myaccount",{data});
 
             //    res.render('myaccount',{data});
             }
