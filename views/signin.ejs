@@ -8,6 +8,7 @@
     <title>SignIn</title>
 </head>
 
+<<<<<<< HEAD
 <body class="signup">
     <div id="bg-image"></div>
     <div class="sign-boxes">
@@ -19,6 +20,40 @@
 
             <h4>Already have an account</h4>
             <button class="signup-button" id="submit"><a href="/signup" id="login">SignUp</a></button>
+=======
+    <body class="signup">
+        <div id="bg-image"></div>
+
+      <div class="sign-boxes">
+            <div class="sign-middle-box signin-b1" id="signin-b1">
+                <!-- <h1>Tracking System</h1> -->
+                <h1>Welcome Back</h1>
+                <p>A myriad of tracking systems exists. Some are 'lag time' indicators, that is, the data is collected
+                    after an item has passed a point</p>
+
+                <h4>Already have an account</h4>
+                <button class="signup-button" id="submit"><a href="/signup" id="login">SignUp</a></button>
+            </div>
+
+
+            <div class="sign-right-box signin-b2" id="signin-b2">
+                <h1>Login</h1>
+                <form action="/signin" method="post">
+                    <p>
+                        <%= ack %>
+                    </p>
+                    <div class="flex">
+                        <label for="name">Username</label>
+                        <input type="text" placeholder='Username' id='name' name="username" maxlength="10" minlength="4" required/>
+                    </div>
+                    <div class="flex">
+                        <label for="password">Password</label>
+                        <input type="password" placeholder='Enter password' id='password' name="password" maxlength="15" minlength="8" required />
+                    </div>
+                    <button type='sumbit' id="login">Login</button>
+                </form>
+            </div>
+>>>>>>> 8e0e954fb26ae54389d66d1169bd1f0d1c668c3c
         </div>
 
 

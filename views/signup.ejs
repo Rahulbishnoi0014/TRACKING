@@ -9,8 +9,12 @@
 </head>
     <body class="signup">
         <div id="bg-image"></div>
+<<<<<<< HEAD
         
 
+=======
+ 
+>>>>>>> 8e0e954fb26ae54389d66d1169bd1f0d1c668c3c
         <div class="sign-boxes">
 
             <div class="sign-middle-box">
@@ -18,25 +22,25 @@
                 <form method='post' action="/signup">
                     <div class="flex">
                         <label for="name">Full Name</label>
-                        <input type="text" placeholder='Enter Your Name here' id='name' name="name" />
+                        <input type="text" placeholder='Enter Your Name here' id='name' name="name" required/>
                     </div>
 
                     <div class="flex">
                         <label for="name">Username</label>
-                        <input type="text" placeholder='Enter Your Name here' id='name' name="username" />
+                        <input type="text" placeholder='Enter Your Name here' id='name' name="username" maxlength="10" minlength="4" required/>
                     </div>
                     <div class="flex">
                         <label for="password">Password</label>
-                        <input type="password" placeholder='Enter password' id='password' name='password' />
+                        <input type="password" placeholder='Enter password' id='password' name='password' maxlength="15" minlength="8" required/>
                     </div>
 
                     <div class="flex">
                         <label for="Email">Email</label>
-                        <input type="email" placeholder='Enter Email' id='email' name="email" />
+                        <input type="email" placeholder='Enter Email' id='email' name="email" required />
                     </div>
                     <div class="flex">
                         <label for="Phone">Phone No.</label>
-                        <input type="tel" placeholder='Enter Phone No' id='phone' name='phone' />
+                        <input type="tel" placeholder='Enter Phone No' id='phone' name='phone' maxlength="10" minlength="10"  required />
                     </div>
                     <div class="flex">
                         <label for="Selection">Post</label>
