@@ -37,17 +37,17 @@
     <div class="main-box">
         <div class="todo-assign-box">
             <div class="middle-box">
+                <h1 style="text-align: center;">PERSONAL TODO</h1>
 
-                <h1>PERSONAL TODO</h1>
                 <div class="input">
                     <form action="/assignself?user=mentor" method="post">
                         <input type="text" placeholder="Todo" name="todo" required>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
-
+                
                 <div class="mytodo">
-
+                    
                     <% var count=0; %>
                         <% mytodo.reverse().forEach(function(item){ %>
 
