@@ -211,19 +211,17 @@
 
 
 @media screen and (max-width:450px) {
+    /* nav{
+        margin-bottom: 250px;
+    } */
     .main-box {
-        margin-top: 50px;
+        margin-top: 150px;
         width: 100%;
         height: 100%;
     }
     .flexe{
         flex-direction: column-reverse;
-    }
-    .todo-assign-box {
-        flex-direction: column;
-        width: 99%;
-        height: 100%;
-        border: 0;
+        height: auto;
     }
     .middle-box {
         width: 100%;
@@ -242,5 +240,14 @@
     .mentor .right-box .asin-task{
         width: 100%;
         height: 100%;
+    }
+    .mentor .assignedtod{
+        flex-wrap: nowrap;
+        flex-direction: column-reverse;
+    }
+    .mentor .assignedtod .teambox{
+        /* margin: 10px 0px; */
+        margin-top: 10px;
+        width: 95%;
     }
 }
