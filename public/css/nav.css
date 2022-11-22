@@ -36,12 +36,11 @@
     padding: 8px 8px;
     display: block;
     border-radius: 10px;
-    /* background-color: rgb(65, 87, 167); */
     background-color: blueviolet;
-    cursor: none;
+    cursor:default;
 }
 
-.navbar-links li:hover {
+.navbar-links li a:hover {
     background-color: rgb(65, 87, 167);
 }
 .navbar-links li a {
