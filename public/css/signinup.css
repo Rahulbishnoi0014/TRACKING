@@ -6,13 +6,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* .signup .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-} */
-
 .signup #bg-image {
     background-image: url('https://wallpapercave.com/wp/wp10054801.png');
     background-size: cover;
@@ -25,122 +18,19 @@
     -webkit-filter: blur(5px);
 }
 
-/* 
-.signup .box {
-    width: 400px;
-    height: 500px;
-    background-color: rgba(47, 42, 42, 0.747);
-    padding: 20px;
-    border-radius: 20px;
-    color: white;
-    margin-left: 219px;
-}
-.signup #extrabox{
-    width: 850px;
-    height: 500px;
-    background-color: rgba(47, 42, 42, 0.886);
-    padding: 20px;
-    border-radius: 20px;
-    position: absolute;
-    right: 20%;
-    z-index: -1;
-    color: white;
-}
-.signup .EB-p1{
-    margin-left: 490px;
-    width: 400px;
-    font-size: 50px;
-}
-.signup #EB-p1{
-    width: 400px;
-    font-size: 50px;
-}
-.signup #signuph{
-    text-align: center;
-    margin-top: -8px;
-    font-size: 40px;
-    font-weight: 500;
-}
-.signup label{
-    font-weight: 650;
-    margin-bottom: 15px;
-}
-.signup .flex {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-.signup #select{
-    border-radius: 8px;
-    height: 25px;
-    background-color: white;
-}
-.signup input{
-    height: 30px;
-    border-radius: 10px;
-    padding: 0px 5px;
-    border: 0px solid rgba(72, 69, 69, 0.501);
-    outline: none;
-    margin-top: 2px;
-    background-color: rgb(255, 255, 255);
-}
-.signup button{
-    width: 100%;
-    height: 30px;
-    margin-top: 20px;
-    margin-bottom: 7px;
-    border-radius: 10px;
-    background: rgba(89, 89, 89, 0.724);
-    border: none;
-    cursor: pointer;
-    font-size: 17px;
-    color: white;
-    font-weight: bold;
-}
-.signup #signin{
-    text-decoration: none;
-    font-size: 30px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    margin-top: 400px;
-    margin-right: 450px;
-    margin-left: 45px;
-}
-.signup #loginBox{
-    margin-left: 316px;
-}
-.signup .box h2{
-    text-align: center;
-    font-size: 40px;
-}
-.signup #login{
-    margin-top: 280px;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-} */
-
-
 .signup .sign-boxes {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 10px solid gray; */
-
 }
 
 
 .signup .sign-left-box {
     width: 4%;
     height: 70%;
-    /* border: 2px solid blue; */
-    /* background-color: rgba(47, 42, 42, 0.747); */
     background-color: rgba(47, 42, 42, 0.886);
-
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 
@@ -149,7 +39,6 @@
 .signup .sign-middle-box {
     width: 30%;
     height: 70%;
-    /* border: 2px solid purple; */
     background-color: rgba(47, 42, 42, 0.925);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -283,7 +172,6 @@ label {
     font-weight: bolder;
     margin-top: 20px;
     margin-bottom: 30px;
-    /* padding: 5px; */
 }
 
 .signup .signin-b1>p {
@@ -294,7 +182,6 @@ label {
 
 .signup .signin-b1>h3 {
     margin-bottom: 30px;
-    /* padding: 5px; */
 }
 
 .signup .signin-b1 .signup-button a {
@@ -322,7 +209,6 @@ label {
 .signup #signin-b2 .flex {
     width: 90%;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 8px;
