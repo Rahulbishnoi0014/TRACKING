@@ -159,6 +159,7 @@
     /* color: white; */
     text-align: center;
     color: rgb(21, 106, 136);
+    padding-top: 1rem;
 }
 
 
@@ -183,16 +184,17 @@
     }
     .middle-box {
         width: 100%;
-        border-bottom: 2px solid #5D0CFF;
+        /* border-bottom: 2px solid #5D0CFF; */
+        border-bottom: 2px solid rgb(0, 70, 101);
         margin-bottom: 5px;
     }
     .middle-box h1 {
-        margin: 40px 0px;
+        margin: 15px 0px;
     }
 
     .right-box {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         overflow: scroll;
     }
     .mentor .right-box .asin-task{
