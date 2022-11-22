@@ -181,7 +181,30 @@ app.get("/mentor", (req, res) => {
 
 })
 
+app.get("/myaccount", (req, res) => {
+    if (req.isAuthenticated()) {
 
+        
+        var userid = req.session.passport.user;
+        User.findOne({ _id: userid }, function (err, data) {
+            // console.log(data);
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.render("myaccount",{data});
+
+            //    res.render('myaccount',{data});
+            }
+        })
+
+
+    }
+    else {
+        const ack = "Login first";
+        res.render("signin", { ack });
+    }
+})
 
 
 
