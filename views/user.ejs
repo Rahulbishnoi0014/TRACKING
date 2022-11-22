@@ -11,41 +11,22 @@
 </head>
 
 <body class="mentor">
-    <nav>
-        <h2>Tracking System</h1>
+    <nav class="navbar">
+        <div class="brand-tatal">Tracking System</div>
+        <a href="#" class="toggle-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
-                <!-- <li><a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                            aria-controls="offcanvasExample" id="btn">
-                            My info
-                        </a>
-                        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                            aria-labelledby="offcanvasExampleLabel">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasExampleLabel">My Info</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <div class="details">
-    
-                                    <h2>Name :- <%=data.name%>
-                                    </h2>
-                                    <h3>Email:- <%=data.email%>
-                                    </h3>
-                                    <h2>phone:- <%=data.phone%>
-                                    </h2>
-                                    <h2>Post :- <%=data.post%>
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
-                    </li> -->
-                <li><a href="/">My Team Mates</a></li>
-                <!-- <li><a href="">Hello :- <%=data.name%></a></li> -->
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">My Team Mates</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
+        </div>
+
     </nav>
     <div class="main-box">
         <div class="todo-assign-box">
@@ -117,7 +98,14 @@
 
         </div>
     </div>
+    <script>
+        const togglebtn = document.getElementsByClassName("toggle-btn")[0];
+        const nav = document.getElementsByClassName("navbar-links")[0];
 
+        togglebtn.addEventListener("click", () => {
+            nav.classList.toggle("active")
+        })
+    </script>
 </body>
 
 <%- include('part/footer')%>
