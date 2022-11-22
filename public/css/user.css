@@ -26,7 +26,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0e1842;
+    /* background-color: #0e1842; */
+    background-color: #cdced4aa;
     border-radius: 10px;
 }
 
@@ -35,12 +36,15 @@
     /* height: 100%; */
     height: 71vh;
 
-    color: white;
+    /* color: white; */
+    /* color: white; */
+    color: rgb(21, 106, 136);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-right: 2px solid #3f60e3;
+    /* border-right: 2px solid #3f60e3; */
+    border-right: 2px dashed black;
 }
 
 
@@ -53,13 +57,14 @@
     height: 40px;
     border-radius: 10px;
     padding: 0px 5px;
-    border: 2px solid #5D0CFF;
+    /* border: 2px solid #5D0CFF; */
+    border: 2px solid rgb(70, 69, 69);
     outline: none;
     margin-top: 2px;
     font-size: 17px;
     background: transparent;
     margin: 15px 0px;
-    color: white;
+    /* color: white; */
 }
 
 .mentor button {
@@ -68,14 +73,16 @@
     border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
-    background-color: #374374;
+    /* background-color: #374374; */
+    background: linear-gradient(34deg, rgba(0, 70, 101, 0.8727823893229166) 62%, rgba(139, 219, 219, 1) 100%);
+
     color: white;
     border: none;
 }
 
 .mentor button:hover {
-    background-color: #0e1842;
-    border: 2px solid #5D0CFF;
+    /* background-color: #0e1842; */
+    border: 2px solid black;
 }
 
 .mentor .mytodo {
@@ -107,12 +114,15 @@
     padding: 0px 5px;
     margin: 5px 10px;
     border-radius: 10px;
-    background-color: rgba(118, 74, 152, 0.555);
+    /* background-color: rgba(118, 74, 152, 0.555); */
     font-weight: bold;
     text-transform: capitalize;
     font-size: 20px;
     display: flex;
     align-items: center;
+    color: rgb(76, 73, 73);
+    background-color: rgba(178, 176, 179, 0.555);
+
 }
 
 .mentor .mytodo .todo p::-webkit-scrollbar {
@@ -125,8 +135,11 @@
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: rgba(118, 74, 152, 0.555);
+    /* background-color: rgba(118, 74, 152, 0.555); */
     border-radius: 10px;
+    color: rgb(21, 106, 136);
+    background-color: rgba(178, 176, 179, 0.555);
+
 }
 
 .mentor .mytodo .todo i {
@@ -134,7 +147,8 @@
 }
 
 .mentor .mytodo .todo a:hover i {
-    color: red;
+    /* color: red; */
+    color: rgb(101, 98, 98);
 }
 
 .right-box {
@@ -142,8 +156,9 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    color: white;
+    /* color: white; */
     text-align: center;
+    color: rgb(21, 106, 136);
 }
 
 

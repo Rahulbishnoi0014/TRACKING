@@ -9,19 +9,8 @@
     rgba(100, 115, 255, 1) 100%); */
     /* background: rgb(43,230,189);
 background: linear-gradient(34deg, rgba(43,230,189,0.5) 24%, rgba(15,112,168,0.5) 100%); */
-<<<<<<< HEAD
 /* background-color: white; */
 background-image: url('https://img.freepik.com/premium-vector/elegant-white-texture-background_23-2148438345.jpg?w=360');
-=======
-    background-color: white;
-}
-
-.mentor {
-
-    background: linear-gradient(90deg,
-            rgba(48, 16, 255, 1) 0%,
-            rgba(100, 115, 255, 1) 100%);
->>>>>>> a4f563ceafa19432733a0df7f337e1909d2205f0
 }
 
 .main-box {
@@ -44,8 +33,9 @@ background-image: url('https://img.freepik.com/premium-vector/elegant-white-text
     width: 70%;
     height: 100%;
     color: white;
-    background-color: #0e1842;
-    border-right: 2px solid #3f60e3;
+    /* background-color: #0e1842; */
+    background-color: #cdced4aa;
+    /* border-right: 2px solid #3f60e3; */
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
