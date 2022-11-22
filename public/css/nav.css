@@ -29,6 +29,17 @@
     list-style: none;
     border-radius: 10px;
 }
+.navbar-links li #name{
+    text-decoration: none;
+    color: white;
+    margin: 0px 10px;
+    padding: 8px 8px;
+    display: block;
+    border-radius: 10px;
+    /* background-color: rgb(65, 87, 167); */
+    background-color: blueviolet;
+    cursor: none;
+}
 
 .navbar-links li:hover {
     background-color: rgb(65, 87, 167);
