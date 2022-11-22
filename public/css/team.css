@@ -1,6 +1,14 @@
-* {
-    margin: 0;
-    padding: 0;
+*{
+margin: 0;
+padding: 0;
+}
+.mentor{
+    /* background: linear-gradient(90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 100%); */
+    /* background: rgb(43,230,189);
+background: linear-gradient(34deg, rgba(43,230,189,0.5) 24%, rgba(15,112,168,0.5) 100%); */
+background-color: white;
 }
 
 .mentor {
