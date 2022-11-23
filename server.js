@@ -88,7 +88,7 @@ passport.use(new GoogleStrategy({
 
 
 
-        User.findOrCreate({ googleId: profile.id, username: profile.displayName, firstname: profile.name.givenName, lastName: profile.name.familyName }, function (err, user) {
+        User.findOrCreate({ googleId: profile.id, username: profile.displayName, name: profile.name.givenName}, function (err, user) {
             if (err) {
                 res.render("errorpage", { message: err });
             }
