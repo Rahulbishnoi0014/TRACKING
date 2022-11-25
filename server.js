@@ -153,7 +153,7 @@ app.get("/mentor", (req, res) => {
         User.findOne({ _id: userid }, function (err, data) {
             // console.log(data);
             if (err) {
-                res.send(data);
+                res.send(err);
             }
             else {
                 if (data.post == 'Mentor') {
@@ -175,7 +175,7 @@ app.get("/mentor", (req, res) => {
 
     }
     else {
-        const ack = "LIGIN FIRST";
+        const ack = "LOGIN FIRST";
         res.render("signin", { ack });
     }
 
